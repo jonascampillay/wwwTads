@@ -11,7 +11,7 @@ public class GerenciaAgencia {
 			int numeroAg = Integer.valueOf(entrada.nextLine());
 			if ((GerenciaAgencia.localizarAgencia(numeroAg)) == -1){
 				novaAgencia.setNumeroAg(numeroAg);
-				System.out.println("Insira o nome da nova agência xuliana");
+				System.out.println("Insira o nome da nova agência");
 				novaAgencia.setNome(entrada.nextLine());
 				System.out.println("Insira o endereço da nova agência");
 				novaAgencia.setEndereco(entrada.nextLine());
