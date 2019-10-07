@@ -30,10 +30,10 @@ public class GerenciaConta {
 			return null;
 		}
 		//cadastra a conta no array list
-		public static void cadastraConta(Scanner entrada) {
+		public static void cadastraContaCorrente(Scanner entrada) {
 			Cliente clientezinho = GerenciaCliente.selecionarCliente(entrada);
 			int agencia = clientezinho.getNumeroAg();
-			Conta novaConta = new Conta(agencia, clientezinho.getCodCliente());
+			Conta novaConta = new ContaCorrente(agencia, clientezinho.getCodCliente());
 			try {
 				 if (Principal.lstContas.add(novaConta)) {
 					System.out.println("Conta cadastrada com sucesso");
@@ -45,6 +45,22 @@ public class GerenciaConta {
 				System.err.println("Quebrou");
 			}
 		}
+		//cadastra a conta no array list
+				public static void cadastraContaPoupanca(Scanner entrada) {
+					Cliente clientezinho = GerenciaCliente.selecionarCliente(entrada);
+					int agencia = clientezinho.getNumeroAg();
+					Conta novaConta = new ContaPoupanca(agencia, clientezinho.getCodCliente());
+					try {
+						 if (Principal.lstContas.add(novaConta)) {
+							System.out.println("Conta cadastrada com sucesso");
+						}else {
+							System.out.println("A conta não foi cadastrada");
+						}
+
+					} catch (Exception e) {
+						System.err.println("Quebrou");
+					}
+				}
 		//exclui uma conta desejada
 		public static boolean CancelarConta (int numConta){
 			int indice = LocalizarConta(numConta);	

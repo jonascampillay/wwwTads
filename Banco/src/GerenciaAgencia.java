@@ -56,7 +56,7 @@ public class GerenciaAgencia {
 
 					int index = Integer.valueOf(entrada.nextLine());
 					if (index >= 0 && index <= (Principal.lstAgencias.size() - 1)) {
-						Principal.lstAgencias.get(index);
+						return Principal.lstAgencias.get(index);
 					} else if (index == -1) {
 						continuar = false;
 					}

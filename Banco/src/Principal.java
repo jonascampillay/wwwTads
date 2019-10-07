@@ -299,7 +299,7 @@ public class Principal {
 				case 1:
 					
 					if (GerenciaCliente.criarCliente(entrada)) {
-						System.out.println("Agência cadastrada com sucesso");
+						System.out.println("Cliente cadastrado com sucesso");
 					}
 					
 					break;
@@ -317,8 +317,21 @@ public class Principal {
 					}
 
 					break;
-				case 4:
-					GerenciaConta.cadastraConta(entrada);
+				case 4:	
+					System.out.println("Que tipo de conta?\n1- Corrente\n2- Poupança");
+					int tipoConta = Integer.valueOf(entrada.nextLine());
+					
+					switch (tipoConta) {
+					case 1:
+						GerenciaConta.cadastraContaCorrente(entrada);
+						break;
+					case 2:
+						GerenciaConta.cadastraContaPoupanca(entrada);
+						break;
+					default:
+						System.out.println("Opção inválida!");
+						break;
+					}
 
 					break;
 				case 0:

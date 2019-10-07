@@ -1,23 +1,20 @@
-public class Conta {
-	private static int numConta;
-	private int numeroAg;
-	private int codCliente;
-	private double saldo;
-	private double limite;
+public abstract class Conta {
+	protected static int numConta;
+	protected int numeroAg;
+	protected int codCliente;
+	protected double saldo;
 	private static int maxNumConta = 1000;
 
 	public Conta(int numeroAg, int codCliente, double saldo, double limite) {
 		this.numConta = maxNumConta++;
 		this.numeroAg = numeroAg;
 		this.saldo = saldo;
-		this.limite = limite;
 		this.codCliente = codCliente;
 	}
 	protected Conta(int numeroAg,  int codCliente) {
 		this.numConta = maxNumConta++;
 		this.numeroAg = numeroAg;
 		this.saldo = 0.0;
-		this.limite = 0.0;
 		this.codCliente = codCliente;
 	}
 
@@ -26,16 +23,15 @@ public class Conta {
 		Conta conta = (Conta) obj;
 		return this.numConta == conta.numConta;
 	}
+	
 	public boolean sacar(double valor) {
-		double limiteSaque = this.saldo + this.limite;
-
-		if (limiteSaque >= valor) {
-			this.saldo -= valor;
-			System.out.println("Operação aprovada");
-			return true;
+		final double txOperacao = 0.5;
+		if(valor > 0) {
+		this.saldo -= valor * (1 + (txOperacao) / 100);
+		return true;
 		}
-		System.out.println("Saldo insuficiente");
 		return false;
+		
 	}
 
 	public void depositar(double valor) {
@@ -47,6 +43,7 @@ public class Conta {
 		}
 
 	}
+	
 	public static String registrarHistorico(String[] historico, int cont, double valor) {
 		String saidaHistorico = "";
 		// Registar no vetor as transações de depósito
@@ -88,14 +85,6 @@ public class Conta {
 		this.saldo = saldo;
 	}
 
-	public double getLimite() {
-		return limite;
-	}
-
-	public void setLimite(double limite) {
-		this.limite = limite;
-	}
-
 	public int getMaxNumConta() {
 		return maxNumConta;
 	}
@@ -109,7 +98,7 @@ public class Conta {
 	}
 	@Override
 	public String toString() {
-		return "Conta [numConta=" + numConta + ", numeroAg=" + numeroAg + ", saldo=" + saldo + ", limite=" + limite
+		return "Conta [numConta=" + numConta + ", numeroAg=" + numeroAg + ", saldo=" + saldo
 				+ "]";
 	}
 }
