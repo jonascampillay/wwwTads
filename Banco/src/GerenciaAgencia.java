@@ -7,20 +7,12 @@ public class GerenciaAgencia {
 		Iterator<Agencia> iterAgencia = Principal.lstAgencias.iterator();
 		try {
 			Agencia novaAgencia = new Agencia();
-			System.out.println("Insira o numero da nova agência");
-			int numeroAg = Integer.valueOf(entrada.nextLine());
-			if ((GerenciaAgencia.localizarAgencia(numeroAg)) == -1){
-				novaAgencia.setNumeroAg(numeroAg);
-				System.out.println("Insira o nome da nova agência");
-				novaAgencia.setNome(entrada.nextLine());
-				System.out.println("Insira o endereço da nova agência");
-				novaAgencia.setEndereco(entrada.nextLine());
-				if (Principal.lstAgencias.add(novaAgencia)) {
-					return true;
-				}
-			} else {
-				System.out.println("Já existe um agência cadastrada com esse numero!!!");
-			}
+			System.out.println("Insira o nome da nova agência");
+			novaAgencia.setNome(entrada.nextLine());
+			System.out.println("Insira o endereço da nova agência");
+			novaAgencia.setEndereco(entrada.nextLine());
+			return Principal.lstAgencias.add(novaAgencia);
+				
 		} catch (Exception e) {
 			System.err.println("Quebrou");
 		}
@@ -29,7 +21,7 @@ public class GerenciaAgencia {
 
 	public static boolean buscarAgencia(int numeroAg) {
 		// Retorna true se encontra o elemento e false se não encontra
-		Agencia agenciaAux = new Agencia(numeroAg);
+		Agencia agenciaAux = new Agencia();
 
 		int posElem = Principal.lstAgencias.indexOf(agenciaAux);
 		if (posElem > -1) {
@@ -87,14 +79,15 @@ public class GerenciaAgencia {
 		}
 		return -1;
 	}
-	//método para mostrar todas as agências que estão cadastradas no sistema
-			public static void mostraAgencias() { 
-				Iterator<Agencia> iterAgencia = Principal.lstAgencias.iterator();
-				Agencia AgenciaAux = iterAgencia.next();
-			    String agencias = "";
-				for (int i = 0; i < Principal.lstContas.size(); i++) {
-					agencias += i + "- " + AgenciaAux.toString() + "\n";
-				}
-				System.out.println(agencias);
-			}
+
+	// método para mostrar todas as agências que estão cadastradas no sistema
+	public static void mostraAgencias() {
+		Iterator<Agencia> iterAgencia = Principal.lstAgencias.iterator();
+		Agencia AgenciaAux = iterAgencia.next();
+		String agencias = "";
+		for (int i = 0; i < Principal.lstContas.size(); i++) {
+			agencias += i + "- " + AgenciaAux.toString() + "\n";
+		}
+		System.out.println(agencias);
+	}
 }

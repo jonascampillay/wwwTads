@@ -6,6 +6,19 @@ public class ContaCorrente extends Conta {
 		super(numeroAg, codCliente);
 		this.limiteConta = 150.00;
 	}
+	
+	@Override
+	public boolean sacar(double valor) {
+		double limiteSaque = this.saldo + this.limiteConta;
+
+		if (limiteSaque >= valor) {
+			this.saldo -= valor;
+			System.out.println("Operação aprovada");
+			return true;
+		}
+		System.out.println("Saldo insuficiente");
+		return false;
+	}
 
 	@Override
 	public String toString() {

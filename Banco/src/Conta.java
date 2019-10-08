@@ -25,13 +25,13 @@ public abstract class Conta {
 	}
 	
 	public boolean sacar(double valor) {
-		final double txOperacao = 0.5;
-		if(valor > 0) {
-		this.saldo -= valor * (1 + (txOperacao) / 100);
-		return true;
+		if (this.saldo >= valor) {
+			this.saldo -= valor;
+			System.out.println("Operação aprovada");
+			return true;
 		}
+		System.out.println("Saldo insuficiente");
 		return false;
-		
 	}
 
 	public void depositar(double valor) {

@@ -6,7 +6,7 @@ public class Cliente {
 	
 	public Cliente(int codCliente) {
 		this.codCliente = codCliente;
-		//this.numeroAg = maxCodCliente++;
+	//	this.numeroAg = maxCodCliente++;
 		this.senha = 0;
 	}
 	

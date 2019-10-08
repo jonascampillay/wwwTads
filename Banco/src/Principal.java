@@ -67,7 +67,7 @@ public class Principal {
 
 	private static void menuOperacoesBancarias(Scanner entrada) {
 		boolean sair = false;
-		System.out.println("Qual operação bancária desejas??" + "\n1- Ver saldo" + "\n2 - Depositar " + "\n3 - Sacar"
+		System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar " + "\n3 - Sacar"
 				+ "\n4 - Trasferir" + "\n0 - Sair da ramificação");
 
 		int menu2 = Integer.valueOf(entrada.nextLine());
@@ -75,7 +75,7 @@ public class Principal {
 			do {
 				switch (menu2) {
 				case 1:
-
+					Cliente fake = GerenciaCliente.selecionarCliente(entrada);
 					break;
 				case 2:
 
@@ -315,7 +315,6 @@ public class Principal {
 					} else {
 						System.out.println("Falha ao cadastrar o gerente!");
 					}
-
 					break;
 				case 4:	
 					System.out.println("Que tipo de conta?\n1- Corrente\n2- Poupança");

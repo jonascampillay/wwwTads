@@ -1,5 +1,5 @@
 public class Agencia {
-	private static int contador = 100;
+	private static int contador = 0;
 	private int numeroAg;
 	private String nome;
 	private String endereco;
@@ -9,8 +9,13 @@ public class Agencia {
 		this.nome = "";
 		this.endereco = "";
 	}
+<<<<<<< Updated upstream
 //gjjjg
+	public Agencia(int numeroAg) {
+=======
+
 	/*public Agencia(int numeroAg) {
+>>>>>>> Stashed changes
 		this.numeroAg = numeroAg;
 		this.nome = "";
 		this.endereco = "";

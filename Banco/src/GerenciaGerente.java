@@ -34,9 +34,7 @@ public class GerenciaGerente {
 	public static boolean cadastraGerente(Scanner entrada) {
 		try {
 			Gerente novoGerente = new Gerente(GerenciaPessoa.cadastraPessoa(entrada));
-			System.out.println("Insira a número da agência do gerente");
-			int numeroAg = Integer.valueOf(entrada.nextLine());
-			novoGerente.setNumeroAg(numeroAg);
+			novoGerente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg());
 			System.out.println("Insira a matricula do gerente");
 			novoGerente.setMatricula(Integer.valueOf(entrada.nextLine()));
 			System.out.println("Insira o salário do gerente");
