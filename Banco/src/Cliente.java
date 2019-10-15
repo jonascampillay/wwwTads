@@ -1,4 +1,4 @@
-public class Cliente {
+public class Cliente extends Pessoa{
 	private int codCliente;
 	private int numeroAg;
 	private static int maxCodCliente = 1;

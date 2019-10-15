@@ -13,11 +13,10 @@ public class Principal {
 	public static void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
 		boolean sair = false;
-		int menu1;
+		int menu1 = 100;
 
-		try {
-
-			do {
+		do {
+			try {
 				System.out.println("Informe a opção desejada senhor(a)" + "\n1 - Cadastro" + "\n2 - Exclusão"
 						+ "\n3 - Exibir relatório" + "\n4 - Consultar dados" + "\n5 - Alterar dados"
 						+ "\n6 - Operações bancárias" + "\n0 - Sair do sistema");
@@ -33,9 +32,7 @@ public class Principal {
 
 					break;
 				case 3:
-
 					menuRelatorio(entrada);
-
 					break;
 				case 4:
 					menuConsultaDados(entrada);
@@ -45,63 +42,67 @@ public class Principal {
 					break;
 				case 6:
 					menuOperacoesBancarias(entrada);
-
 					break;
 				case 0:
 					sair = true;
-
 					break;
-
 				default:
 					System.out.println("Opção inválida meu parciero, se oriente!");
 					break;
 				}
 
-			} while (!sair);
-
-		} catch (Exception e) {
-			System.err.println("Isso não me cheira bem!!!");
-		}
+			} catch (Exception e) {
+				System.err.println("Isso não me cheira bem!!!");
+			}
+		} while (!sair);
 
 	}
 
 	private static void menuOperacoesBancarias(Scanner entrada) {
-		boolean sair = false;
-		System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar " + "\n3 - Sacar"
-				+ "\n4 - Trasferir" + "\n0 - Sair da ramificação");
+		Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+		if (clientinho.getCodCliente() != 0) {
+			Conta continha = GerenciaConta.selecionarConta(clientinho.getCodCliente(), entrada);
+			if (continha.getNumConta() != 0) {
+				boolean sair = false;
+				System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
+						+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n0 - Voltar ao menu principal");
+				int menu2 = Integer.valueOf(entrada.nextLine());
+				try {
+					do {
+						switch (menu2) {
+						case 1:
+							System.out.println("Saldo: R$" + continha.getSaldo());
+							break;
+						case 2:
+							System.out.println("Digite o valor que deseja depositar");
+							continha.depositar(Double.valueOf(entrada.nextLine()));
+							break;
+						case 3:
+							System.out.println("Digite o valor que deseja sacar");
+							continha.sacar(Double.valueOf(entrada.nextLine()));
+							break;
+						case 4:
+							if (continha.transferir(entrada)) {
+								System.out.println("Trasferência realizada com sucesso");
+							} else {
+								System.out.println("Falha na transferência");
+							}
+							break;
+						case 0:
+							sair = true;
+							break;
+						default:
+							System.out.println("Opção inválida");
+							break;
+						}
 
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
-				switch (menu2) {
-				case 1:
-					Cliente fake = GerenciaCliente.selecionarCliente(entrada);
-					break;
-				case 2:
+					} while (sair);
 
-					break;
-				case 3:
-
-					break;
-				case 4:
-
-					break;
-				case 0:
-					sair = true;
-
-					break;
-
-				default:
-					System.out.println("Opção inválida");
-					break;
+				} catch (Exception e) {
+					System.err.println("Deu ruim");
 				}
-
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
+			}
 		}
-
 	}
 
 	private static void menuAlterarDados(Scanner entrada) {
@@ -157,22 +158,20 @@ public class Principal {
 			do {
 				switch (menu2) {
 				case 1:
-					System.out.println(GerenciaCliente.selecionarCliente(entrada).toString());
+					System.out.println(lstClientes.toString());
 					break;
 				case 2:
 					System.out.println(lstAgencias.toString());
 					break;
 				case 3:
-					System.out.println(GerenciaGerente.selecionarGerente(entrada).toString());
+					System.out.println(lstGerentes.toString());
 					break;
 				case 4:
-					System.out.println(GerenciaConta.selecionarConta(entrada).toString());
+					System.out.println(lstContas.toString());
 					break;
 				case 0:
 					sair = true;
-
 					break;
-
 				default:
 					System.out.println("Opção inválida");
 					break;
@@ -209,9 +208,7 @@ public class Principal {
 					break;
 				case 0:
 					sair = true;
-
 					break;
-
 				default:
 					System.out.println("Opção inválida");
 					break;
@@ -297,11 +294,11 @@ public class Principal {
 			do {
 				switch (menu2) {
 				case 1:
-					
+
 					if (GerenciaCliente.criarCliente(entrada)) {
 						System.out.println("Cliente cadastrado com sucesso");
 					}
-					
+
 					break;
 				case 2:
 					if (GerenciaAgencia.criarAgencia(entrada)) {
@@ -316,10 +313,10 @@ public class Principal {
 						System.out.println("Falha ao cadastrar o gerente!");
 					}
 					break;
-				case 4:	
+				case 4:
 					System.out.println("Que tipo de conta?\n1- Corrente\n2- Poupança");
 					int tipoConta = Integer.valueOf(entrada.nextLine());
-					
+
 					switch (tipoConta) {
 					case 1:
 						GerenciaConta.cadastraContaCorrente(entrada);

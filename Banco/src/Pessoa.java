@@ -7,20 +7,20 @@ public class Pessoa {
 	private String CPF;
 	private String endereco;
 	private int codPessoa;
-	private static int maxCodPessoa = 1;
+	private static int contador = 1;
 
 	public Pessoa(String CPF) {
 		this.nome = "";
 		this.CPF = CPF;
 		this.endereco = "";
-		this.codPessoa = maxCodPessoa++;
+		this.codPessoa = ++contador;
 	}
 
 	public Pessoa() {
 		this.nome = "";
 		this.CPF = "";
 		this.endereco = "";
-		this.codPessoa = maxCodPessoa++;
+		this.codPessoa = ++contador;
 	}
 
 	public int getCodPessoa() {

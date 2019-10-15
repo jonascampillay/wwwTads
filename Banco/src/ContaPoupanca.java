@@ -1,6 +1,8 @@
 public class ContaPoupanca extends Conta {
 	private String dtaAniv;
 	private double rendimento;
+	private static String tipo = "Corrente";
+
 
 	public ContaPoupanca(int numeroAg,  int codCliente) {
 		super(numeroAg, codCliente);

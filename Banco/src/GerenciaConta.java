@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class GerenciaConta {
-		public static Conta selecionarConta(Scanner entrada) {
+		public static Conta selecionarConta(int codCliente, Scanner entrada) {
 			Iterator<Conta> iterConta = Principal.lstContas.iterator();
 			String contas = "Insira o código da conta desejada\n";
 			Conta contaAux;
@@ -12,7 +12,10 @@ public class GerenciaConta {
 					if (iterConta.hasNext()) {
 						contaAux = iterConta.next();
 						for (int i = 0; i < Principal.lstContas.size(); i++) {
-							contas += i + "- " + contaAux.toString() + "\n";
+							contaAux = Principal.lstContas.get(i);
+							if(codCliente == contaAux.getCodCliente()) {
+								contas += i + "- " + contaAux.toString() + "\n";
+							}
 						}
 						contas += "ou digite -1 para cancelar";
 						System.out.println(contas);
@@ -92,5 +95,5 @@ public class GerenciaConta {
 			}
 			System.out.println(contas);
 		}
-		
+			
 }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public abstract class Conta {
 	protected static int numConta;
 	protected int numeroAg;
@@ -11,7 +13,8 @@ public abstract class Conta {
 		this.saldo = saldo;
 		this.codCliente = codCliente;
 	}
-	protected Conta(int numeroAg,  int codCliente) {
+
+	protected Conta(int numeroAg, int codCliente) {
 		this.numConta = maxNumConta++;
 		this.numeroAg = numeroAg;
 		this.saldo = 0.0;
@@ -23,27 +26,45 @@ public abstract class Conta {
 		Conta conta = (Conta) obj;
 		return this.numConta == conta.numConta;
 	}
-	
+
 	public boolean sacar(double valor) {
-		if (this.saldo >= valor) {
+		if (this.saldo >= valor && valor > 0) {
 			this.saldo -= valor;
 			System.out.println("Operação aprovada");
 			return true;
 		}
-		System.out.println("Saldo insuficiente");
+		System.out.println("Valor não permitido");
 		return false;
 	}
 
-	public void depositar(double valor) {
+	public boolean depositar(double valor) {
 		if (valor > 0) {
 			this.saldo += valor;
 			System.out.println("Operação aprovada");
-		} else {
-			System.out.println("Valor inválido");
+			return true;
 		}
+		System.out.println("Valor inválido");
+		return false;
 
 	}
-	
+
+	public boolean transferir(Scanner entrada) {
+		Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+		if (clientinho != null) {
+			Conta contaDestino = GerenciaConta.selecionarConta(clientinho.getCodCliente(), entrada);
+			if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != this.getNumConta()) {
+				double valor = Double.valueOf(entrada.nextLine());
+				if(this.sacar(valor)) {
+					contaDestino.depositar(valor);
+					return true;
+				}
+			} else {
+				System.out.println("Operação não permitida");
+			}
+		}
+		return false;
+	}
+
 	public static String registrarHistorico(String[] historico, int cont, double valor) {
 		String saidaHistorico = "";
 		// Registar no vetor as transações de depósito
@@ -60,7 +81,6 @@ public abstract class Conta {
 		return saidaHistorico;
 	}
 
-	
 	public int getNumConta() {
 		return numConta;
 	}
@@ -93,12 +113,24 @@ public abstract class Conta {
 		this.maxNumConta = maxNumConta;
 	}
 
-	public void deposito(double valorDeposito) {
-		// TODO Auto-generated method stub
+	public int getNumeroAg() {
+		return numeroAg;
 	}
+
+	public void setNumeroAg(int numeroAg) {
+		this.numeroAg = numeroAg;
+	}
+
+	public int getCodCliente() {
+		return codCliente;
+	}
+
+	public void setCodCliente(int codCliente) {
+		this.codCliente = codCliente;
+	}
+
 	@Override
 	public String toString() {
-		return "Conta [numConta=" + numConta + ", numeroAg=" + numeroAg + ", saldo=" + saldo
-				+ "]";
+		return "Conta [numConta=" + numConta + ", numeroAg=" + numeroAg + ", saldo=" + saldo + "]";
 	}
 }

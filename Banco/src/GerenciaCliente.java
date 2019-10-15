@@ -14,6 +14,7 @@ public class GerenciaCliente {
 				if (iterCliente.hasNext()) {
 					clienteAux = iterCliente.next();
 					for (int i = 0; i < Principal.lstClientes.size(); i++) {
+						clienteAux = Principal.lstClientes.get(i);
 						clientes += i + "- " + clienteAux.toString() + "\n";
 					}
 					clientes += "ou digite -1 para cancelar";
@@ -51,7 +52,6 @@ public class GerenciaCliente {
 	public static boolean criarCliente(Scanner entrada) {
 		try {
 			Cliente novoCliente = new Cliente(GerenciaPessoa.cadastraPessoa(entrada));
-			System.out.println("Insira a número da agência do novo cliente");
 			novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui meu parceiro 
 			System.out.println("Insira a senha do novo cliente");
 			novoCliente.setSenha(Integer.valueOf(entrada.nextLine()));

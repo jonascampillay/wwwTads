@@ -1,4 +1,4 @@
-public class Gerente {
+public class Gerente extends Pessoa{
 	private int codGerente;
 	private int numeroAg;
 	private int matricula;
