@@ -1,21 +1,21 @@
 import java.util.Scanner;
 
 public abstract class Conta {
-	protected static int numConta;
+	protected int numConta;
 	protected int numeroAg;
 	protected int codCliente;
 	protected double saldo;
-	private static int maxNumConta = 1000;
+	private static int contador = 1000;
 
 	public Conta(int numeroAg, int codCliente, double saldo, double limite) {
-		this.numConta = maxNumConta++;
+		this.numConta = ++contador;
 		this.numeroAg = numeroAg;
 		this.saldo = saldo;
 		this.codCliente = codCliente;
 	}
 
 	protected Conta(int numeroAg, int codCliente) {
-		this.numConta = maxNumConta++;
+		this.numConta = ++contador;
 		this.numeroAg = numeroAg;
 		this.saldo = 0.0;
 		this.codCliente = codCliente;
@@ -53,6 +53,7 @@ public abstract class Conta {
 		if (clientinho != null) {
 			Conta contaDestino = GerenciaConta.selecionarConta(clientinho.getCodCliente(), entrada);
 			if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != this.getNumConta()) {
+				System.out.println("Insira o valor que deseja transferir");
 				double valor = Double.valueOf(entrada.nextLine());
 				if(this.sacar(valor)) {
 					contaDestino.depositar(valor);
@@ -106,11 +107,11 @@ public abstract class Conta {
 	}
 
 	public int getMaxNumConta() {
-		return maxNumConta;
+		return contador;
 	}
 
 	public void setMaxNumConta(int maxNumConta) {
-		this.maxNumConta = maxNumConta;
+		this.contador = maxNumConta;
 	}
 
 	public int getNumeroAg() {

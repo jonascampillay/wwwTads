@@ -308,7 +308,7 @@ public class Principal {
 					break;
 				case 3:
 					if (GerenciaGerente.cadastraGerente(entrada)) {
-						System.out.println("Gerente Cadastrado com sucesso!");
+						System.out.println("Gerente cadastrado com sucesso!");
 					} else {
 						System.out.println("Falha ao cadastrar o gerente!");
 					}
@@ -328,13 +328,10 @@ public class Principal {
 						System.out.println("Opção inválida!");
 						break;
 					}
-
 					break;
 				case 0:
 					sair = true;
-
 					break;
-
 				default:
 					System.out.println("Opção inválida");
 					break;
@@ -346,6 +343,22 @@ public class Principal {
 			System.err.println("Deu ruim");
 		}
 
+	}
+	private static void cadastraConta(Scanner entrada) {
+		System.out.println("Que tipo de conta?\n1- Corrente\n2- Poupança");
+		int tipoConta = Integer.valueOf(entrada.nextLine());
+
+		switch (tipoConta) {
+		case 1:
+			GerenciaConta.cadastraContaCorrente(entrada);
+			break;
+		case 2:
+			GerenciaConta.cadastraContaPoupanca(entrada);
+			break;
+		default:
+			System.out.println("Opção inválida!");
+			break;
+		}
 	}
 
 }
