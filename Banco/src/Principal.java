@@ -237,18 +237,17 @@ public class Principal {
 					break;
 				case 2:
 					if (lstAgencias.size() > 0) {
-					System.out.println("informe o número da agencia");
-					int numAgencia = Integer.valueOf(entrada.nextLine());
+						Agencia ag = GerenciaAgencia.selecionarAgencia(entrada);
+						int numAgencia = ag.getNumeroAg();
 					
 						if (GerenciaAgencia.cancelarAgencia(numAgencia)) {
 							System.out.println("Agencia cancelada com sucesso");
 						} else {
 							System.out.println("Falha ao cancelar agencia");
 						}
-					}else {
+					} else {
 						System.out.println("Não possui nenhuma agência cadastrada");
 					}
-					
 
 					break;
 				case 3:
@@ -260,10 +259,10 @@ public class Principal {
 						} else {
 							System.out.println("Falha ao excluir gerente");
 						}
-					}else {
+					} else {
 						System.out.println("Não existe nenhum gerente cadastrado");
 					}
-					
+
 					break;
 				case 4:
 					GerenciaConta.mostraContas();
@@ -353,6 +352,7 @@ public class Principal {
 		}
 
 	}
+
 	private static void cadastraConta(Scanner entrada) {
 		System.out.println("Que tipo de conta?\n1- Corrente\n2- Poupança");
 		int tipoConta = Integer.valueOf(entrada.nextLine());
