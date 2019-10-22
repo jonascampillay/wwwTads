@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
-
 public class Pessoa {
 	private String nome;
 	private String CPF;
