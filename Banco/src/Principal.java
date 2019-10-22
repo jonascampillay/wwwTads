@@ -236,13 +236,19 @@ public class Principal {
 
 					break;
 				case 2:
+					if (lstAgencias.size() > 0) {
 					System.out.println("informe o número da agencia");
 					int numAgencia = Integer.valueOf(entrada.nextLine());
-					if (GerenciaAgencia.cancelarAgencia(numAgencia)) {
-						System.out.println("Agencia cancelada com sucesso");
-					} else {
-						System.out.println("Falha ao cancelar agencia");
+					
+						if (GerenciaAgencia.cancelarAgencia(numAgencia)) {
+							System.out.println("Agencia cancelada com sucesso");
+						} else {
+							System.out.println("Falha ao cancelar agencia");
+						}
+					}else {
+						System.out.println("Não possui nenhuma agência cadastrada");
 					}
+					
 
 					break;
 				case 3:
