@@ -252,15 +252,18 @@ public class Principal {
 
 					break;
 				case 3:
-
-					System.out.println("Inforem o número do gerente");
-					GerenciaGerente.mostraGerentes();
-					if (GerenciaGerente.cancelarGerente(Integer.valueOf(entrada.nextLine()))) {
-						System.out.println("Gerente esxluido com sucesso");
-					} else {
-						System.out.println("Falha ao excluir gerente");
+					if (lstGerentes.size() > 0) {
+						System.out.println("Inforem o número do gerente");
+						GerenciaGerente.mostraGerentes();
+						if (GerenciaGerente.cancelarGerente(Integer.valueOf(entrada.nextLine()))) {
+							System.out.println("Gerente esxluido com sucesso");
+						} else {
+							System.out.println("Falha ao excluir gerente");
+						}
+					}else {
+						System.out.println("Não existe nenhum gerente cadastrado");
 					}
-
+					
 					break;
 				case 4:
 					GerenciaConta.mostraContas();
