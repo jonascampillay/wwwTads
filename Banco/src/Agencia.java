@@ -11,12 +11,6 @@ public class Agencia implements Serializable {
 		this.nome = "";
 		this.endereco = "";
 	}
-//gjjjg
-	/*public Agencia(int numeroAg) {
-		this.numeroAg = numeroAg;
-		this.nome = "";
-		this.endereco = "";
-	}*/
 	public boolean equals(Object obj) {
 		Agencia agencia = (Agencia) obj;
 		return this.numeroAg == agencia.numeroAg;
@@ -48,7 +42,7 @@ public class Agencia implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Agencia [numeroAg=" + numeroAg + ", nome=" + nome + ", endereco=" + endereco + "]";
+		return "\n\nAgencia: \nnumeroAg = " + numeroAg + "\nnome = " + nome + "\nendereco=" + endereco + "\n -----------------------------------------------------";
 	}
 
 }

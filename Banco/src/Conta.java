@@ -135,13 +135,12 @@ public abstract class Conta implements Serializable{
 	public String getTipo() {
 		return tipo;
 	}
-
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
 	@Override
 	public String toString() {
-		return "Conta [numConta=" + numConta + ", numeroAg=" + numeroAg + ", saldo=" + saldo + "]";
+		return "/n Conta: \nnumConta = " + numConta + "\\nnumeroAg = " + numeroAg + "\nsaldo = " + saldo + "\n-------------------------------------------";
 	}
 }

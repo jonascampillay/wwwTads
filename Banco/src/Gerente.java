@@ -54,7 +54,7 @@ public class Gerente extends Pessoa implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Gerente [codGerente=" + codGerente + ", numeroAg=" + numeroAg + ", matricula=" + matricula
-				+ ", salario=" + salario + "]";
+		return "\n\nGerente: \ncodGerente = " + codGerente + "\nnumeroAg = " + numeroAg + "\nmatricula = " + matricula
+				+ "\nsalario = " + salario + "\n----------------------------------------------";
 	}
 }

@@ -43,7 +43,7 @@ public class Cliente extends Pessoa{
 
 	@Override
 	public String toString() {
-		return "Cliente [codCliente=" + codCliente + ", codAgencia=" + numeroAg + "]";
+		return "\n\nCliente: \ncodCliente = " + codCliente + "\ncodAgencia = " + numeroAg + "\n-------------------------------------";
 	}
 
 }
