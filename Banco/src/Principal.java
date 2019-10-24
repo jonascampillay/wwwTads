@@ -15,14 +15,13 @@ public class Principal {
 		boolean sair = false;
 		int menu1 = 100;
 
+		lstAgencias = GerenciaArquivo.leobj("Agencias");
+		lstContas = GerenciaArquivo.leobj("Contas");
+		lstClientes = GerenciaArquivo.leobj("Clientes");
+		lstGerentes = GerenciaArquivo.leobj("Gerentes");
+		lstPessoas = GerenciaArquivo.leobj("Pessoas");
+		
 		do {
-			
-			lstAgencias = GerenciaArquivo.leobj("Agencias");
-			lstContas = GerenciaArquivo.leobj("Contas");
-			lstClientes = GerenciaArquivo.leobj("Clientes");
-			lstGerentes = GerenciaArquivo.leobj("Gerentes");
-			lstPessoas = GerenciaArquivo.leobj("Pessoas");
-			
 			try {
 				System.out.println("Informe a opção desejada senhor(a)" + "\n1 - Cadastro" + "\n2 - Exclusão"
 						+ "\n3 - Exibir relatório" + "\n4 - Consultar dados" + "\n5 - Alterar dados"
@@ -151,7 +150,7 @@ public class Principal {
 					break;
 				case 4:
 					if (continha.transferir(entrada)) {
-						System.out.println("Trasferência realizada com sucesso");
+						System.out.println("Transferência realizada com sucesso");
 					} else {
 						System.out.println("Falha na transferência");
 					}
