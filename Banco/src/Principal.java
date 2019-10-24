@@ -15,11 +15,11 @@ public class Principal {
 		boolean sair = false;
 		int menu1 = 100;
 
-		lstAgencias = GerenciaArquivo.leobj("Agencias");
-		lstContas = GerenciaArquivo.leobj("Contas");
-		lstClientes = GerenciaArquivo.leobj("Clientes");
-		lstGerentes = GerenciaArquivo.leobj("Gerentes");
-		lstPessoas = GerenciaArquivo.leobj("Pessoas");
+		lstAgencias = GerenciaArquivo.lerObj("Agencias");
+		lstContas = GerenciaArquivo.lerObj("Contas");
+		lstClientes = GerenciaArquivo.lerObj("Clientes");
+		lstGerentes = GerenciaArquivo.lerObj("Gerentes");
+		lstPessoas = GerenciaArquivo.lerObj("Pessoas");
 		
 		do {
 			try {
@@ -50,11 +50,11 @@ public class Principal {
 					menuOperacoesBancarias(entrada);
 					break;
 				case 0:
-					GerenciaArquivo.gravaobj(lstAgencias, "Agencias");
-					GerenciaArquivo.gravaobj(lstContas, "Contas");
-					GerenciaArquivo.gravaobj(lstClientes, "Clientes");
-					GerenciaArquivo.gravaobj(lstGerentes, "Gerentes");
-					GerenciaArquivo.gravaobj(lstPessoas, "Pessoas");
+					GerenciaArquivo.gravaObj(lstAgencias, "Agencias");
+					GerenciaArquivo.gravaObj(lstContas, "Contas");
+					GerenciaArquivo.gravaObj(lstClientes, "Clientes");
+					GerenciaArquivo.gravaObj(lstGerentes, "Gerentes");
+					GerenciaArquivo.gravaObj(lstPessoas, "Pessoas");
 					sair = true;
 					break;
 				default:
