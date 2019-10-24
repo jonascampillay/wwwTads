@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Conta {
+public abstract class Conta implements Serializable{
 	protected int numConta;
 	protected int numeroAg;
 	protected int codCliente;

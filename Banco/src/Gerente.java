@@ -1,4 +1,6 @@
-public class Gerente extends Pessoa{
+import java.io.Serializable;
+
+public class Gerente extends Pessoa implements Serializable{
 	private int codGerente;
 	private int numeroAg;
 	private int matricula;

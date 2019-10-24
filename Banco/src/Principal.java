@@ -16,6 +16,13 @@ public class Principal {
 		int menu1 = 100;
 
 		do {
+			
+			lstAgencias = GerenciaArquivo.leobj("Agencias");
+			lstContas = GerenciaArquivo.leobj("Contas");
+			lstClientes = GerenciaArquivo.leobj("Clientes");
+			lstGerentes = GerenciaArquivo.leobj("Gerentes");
+			lstPessoas = GerenciaArquivo.leobj("Pessoas");
+			
 			try {
 				System.out.println("Informe a opção desejada senhor(a)" + "\n1 - Cadastro" + "\n2 - Exclusão"
 						+ "\n3 - Exibir relatório" + "\n4 - Consultar dados" + "\n5 - Alterar dados"
@@ -44,10 +51,15 @@ public class Principal {
 					menuOperacoesBancarias(entrada);
 					break;
 				case 0:
+					GerenciaArquivo.gravaobj(lstAgencias, "Agencias");
+					GerenciaArquivo.gravaobj(lstContas, "Contas");
+					GerenciaArquivo.gravaobj(lstClientes, "Clientes");
+					GerenciaArquivo.gravaobj(lstGerentes, "Gerentes");
+					GerenciaArquivo.gravaobj(lstPessoas, "Pessoas");
 					sair = true;
 					break;
 				default:
-					System.out.println("Opção inválida meu parciero, se oriente!");
+					System.out.println("Opção inválida!");
 					break;
 				}
 

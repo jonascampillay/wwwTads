@@ -1,4 +1,6 @@
-public class Agencia {
+import java.io.Serializable;
+
+public class Agencia implements Serializable {
 	private static int contador = 100;
 	private int numeroAg;
 	private String nome;

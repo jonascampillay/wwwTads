@@ -1,64 +1,34 @@
-import java.awt.List;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class GerenciaArquivo {
-	public static void WriteFile(String json, String caminho){ 
-        Path arquivo = Paths.get(caminho);
-     if (!Files.exists(arquivo)) { 
-         BufferedWriter bw = null;
-         try {
-             Files.createFile(arquivo);
-             bw = new BufferedWriter(new FileWriter(arquivo.toFile(), true));
-             bw.write(json);
-         } catch (IOException ex) {
-             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-         } finally {
-             try {
-                 bw.close();
-             } catch (IOException ex) {
-                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-             }
-         }
-     } else {
-         BufferedWriter bw = null;
-         try {
-             bw = new BufferedWriter(new FileWriter(arquivo.toFile(), true));
-             bw.newLine();
-             bw.write(json);
-         } catch (IOException ex) {
-             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-         } finally {
-             try {
-                 bw.close();
-             } catch (IOException ex) {
-                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-             }
-         }
-     }
- }
+	public static void gravaobj(ArrayList user, String nome) {
+		try {
+			File file = new File(nome + ".txt");
+			ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
+			output.writeObject(user);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 
-/*
- public static List<String> ReadFile(String caminho){
-     List<String> linhas = new ArrayList<>();
-     Path arquivo = Paths.get(caminho);
-     if(Files.exists(arquivo)){
-         try {
-             linhas = Files.readAllLines(arquivo, Charset.defaultCharset());
-         } catch (IOException ex) {
-             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-         }
-     }
-     return linhas;
- }
-*/
+	}
+
+	public static ArrayList leobj(String nome) {
+		try {
+			File file = new File(nome + ".txt");
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
+			ArrayList user = (ArrayList) input.readObject(); // tirar a trasformação em caso de erro
+			return user;
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return null;
+
+	}
 
 }
