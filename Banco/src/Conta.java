@@ -6,6 +6,7 @@ public abstract class Conta implements Serializable{
 	protected int numeroAg;
 	protected int codCliente;
 	protected double saldo;
+	protected String tipo;
 	private static int contador = 1000;
 
 	public Conta(int numeroAg, int codCliente, double saldo, double limite) {
@@ -56,7 +57,7 @@ public abstract class Conta implements Serializable{
 			if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != this.getNumConta()) {
 				System.out.println("Insira o valor que deseja transferir");
 				double valor = Double.valueOf(entrada.nextLine());
-				if(this.sacar(valor)) {
+				if (this.sacar(valor)) {
 					contaDestino.depositar(valor);
 					return true;
 				}
@@ -129,6 +130,14 @@ public abstract class Conta implements Serializable{
 
 	public void setCodCliente(int codCliente) {
 		this.codCliente = codCliente;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override

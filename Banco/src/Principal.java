@@ -75,45 +75,106 @@ public class Principal {
 		if (clientinho.getCodCliente() != 0) {
 			Conta continha = GerenciaConta.selecionarConta(clientinho.getCodCliente(), entrada);
 			if (continha.getNumConta() != 0) {
-				boolean sair = false;
-				System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
-						+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n0 - Voltar ao menu principal");
-				int menu2 = Integer.valueOf(entrada.nextLine());
-				try {
-					do {
-						switch (menu2) {
-						case 1:
-							System.out.println("Saldo: R$" + continha.getSaldo());
-							break;
-						case 2:
-							System.out.println("Digite o valor que deseja depositar");
-							continha.depositar(Double.valueOf(entrada.nextLine()));
-							break;
-						case 3:
-							System.out.println("Digite o valor que deseja sacar");
-							continha.sacar(Double.valueOf(entrada.nextLine()));
-							break;
-						case 4:
-							if (continha.transferir(entrada)) {
-								System.out.println("Trasferência realizada com sucesso");
-							} else {
-								System.out.println("Falha na transferência");
-							}
-							break;
-						case 0:
-							sair = true;
-							break;
-						default:
-							System.out.println("Opção inválida");
-							break;
-						}
-
-					} while (sair);
-
-				} catch (Exception e) {
-					System.err.println("Deu ruim");
+				switch (continha.getTipo()) {
+				case "Poupança":
+					ContaPoupanca poupinha = (ContaPoupanca) continha;
+					menuPoupança(poupinha, entrada);
+					break;
+				case "Corrente":
+					ContaCorrente correntinha = (ContaCorrente) continha;
+					menuCorrente(correntinha, entrada);
+					break;
 				}
 			}
+		}
+	}
+	
+	public static void menuCorrente(ContaCorrente continha, Scanner entrada) {
+		boolean sair = false;
+		System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
+				+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n0 - Voltar ao menu principal");
+		int menu2 = Integer.valueOf(entrada.nextLine());
+		try {
+			do {
+				switch (menu2) {
+				case 1:
+					System.out.println("Saldo: R$" + continha.getSaldo());
+					break;
+				case 2:
+					System.out.println("Digite o valor que deseja depositar");
+					continha.depositar(Double.valueOf(entrada.nextLine()));
+					break;
+				case 3:
+					System.out.println("Digite o valor que deseja sacar");
+					continha.sacar(Double.valueOf(entrada.nextLine()));
+					break;
+				case 4:
+					if (continha.transferir(entrada)) {
+						System.out.println("Trasferência realizada com sucesso");
+					} else {
+						System.out.println("Falha na transferência");
+					}
+					break;
+				case 0:
+					sair = true;
+					break;
+				default:
+					System.out.println("Opção inválida");
+					break;
+				}
+
+			} while (sair);
+
+		} catch (Exception e) {
+			System.err.println("Deu ruim");
+		}
+	}
+	
+	private static void menuPoupança(ContaPoupanca continha, Scanner entrada) {
+		boolean sair = false;
+		System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
+				+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n5 - Virar o mês" + "\n0 - Voltar ao menu principal");
+		int menu2 = Integer.valueOf(entrada.nextLine());
+		try {
+			do {
+				switch (menu2) {
+				case 1:
+					System.out.println("Saldo: R$" + continha.getSaldo());
+					break;
+				case 2:
+					System.out.println("Digite o valor que deseja depositar");
+					continha.depositar(Double.valueOf(entrada.nextLine()));
+					break;
+				case 3:
+					System.out.println("Digite o valor que deseja sacar");
+					continha.sacar(Double.valueOf(entrada.nextLine()));
+					break;
+				case 4:
+					if (continha.transferir(entrada)) {
+						System.out.println("Trasferência realizada com sucesso");
+					} else {
+						System.out.println("Falha na transferência");
+					}
+					break;
+				case 5:
+					if(continha.viraMes(continha)) {
+						System.out.println("Virado comm sucesso!");
+					}else {
+						System.out.println("Não virou");
+					}
+					break;
+				case 0:
+					sair = true;
+					break;
+				default:
+					System.out.println("Opção inválida");
+					break;
+				}
+
+			} while (sair);
+
+		} catch (Exception e) {
+			System.err.println("Deu ruim");
 		}
 	}
 
@@ -251,7 +312,7 @@ public class Principal {
 					if (lstAgencias.size() > 0) {
 						Agencia ag = GerenciaAgencia.selecionarAgencia(entrada);
 						int numAgencia = ag.getNumeroAg();
-					
+
 						if (GerenciaAgencia.cancelarAgencia(numAgencia)) {
 							System.out.println("Agencia cancelada com sucesso");
 						} else {
@@ -264,7 +325,7 @@ public class Principal {
 					break;
 				case 3:
 					if (lstGerentes.size() > 0) {
-						System.out.println("Inforem o número do gerente");
+						System.out.println("Informe o número do gerente");
 						GerenciaGerente.mostraGerentes();
 						if (GerenciaGerente.cancelarGerente(Integer.valueOf(entrada.nextLine()))) {
 							System.out.println("Gerente esxluido com sucesso");

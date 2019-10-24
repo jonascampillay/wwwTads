@@ -1,11 +1,11 @@
 
 public class ContaCorrente extends Conta {
 	private double limiteConta;
-	private static String tipo = "Corrente";
 
-	public ContaCorrente(int numeroAg,  int codCliente) {
+	public ContaCorrente(int numeroAg, int codCliente) {
 		super(numeroAg, codCliente);
 		this.limiteConta = 150.00;
+		this.tipo = "Corrente";
 	}
 	
 	@Override
