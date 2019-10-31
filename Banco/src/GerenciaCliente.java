@@ -51,18 +51,28 @@ public class GerenciaCliente {
 
 	public static boolean criarCliente(Scanner entrada) {
 		try {
-			Cliente novoCliente = new Cliente(GerenciaPessoa.cadastraPessoa(entrada));
-			novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui meu parceiro 
-			System.out.println("Insira a senha do novo cliente");
-			novoCliente.setSenha(Integer.valueOf(entrada.nextLine()));
-
-			return Principal.lstClientes.add(novoCliente);
+			Cliente novoCliente = new Cliente();
+			
+			System.out.println("Insira o nome da nova pessoa");
+			novoCliente.setNome(entrada.nextLine());
+			System.out.println("Insira o CPF");
+			novoCliente.setCPF(entrada.nextLine());
+			if(!GerenciaPessoa.buscarPessoa(novoCliente)) {
+				System.out.println("Insira o endereço");
+				novoCliente.setEndereco(entrada.nextLine());
+				novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui meu parceiro 
+				System.out.println("Insira a senha do novo cliente");
+				novoCliente.setSenha(Integer.valueOf(entrada.nextLine()));
+				return Principal.lstClientes.add(novoCliente);
+				
+			}else{
+				System.out.println("CPF já cadastrado");
+			}
 			
 		} catch (Exception e) {
 			System.err.println("Algo de errado não está certo");
 		}
 		return false;
-
 	}
 
 	public static boolean buscarCliente(int i) {

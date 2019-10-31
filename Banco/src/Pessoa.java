@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public class Pessoa implements Serializable{
-	private String nome;
+	protected String nome;
 	private String CPF;
 	private String endereco;
 	private int codPessoa;

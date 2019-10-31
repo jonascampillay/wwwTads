@@ -11,7 +11,7 @@ public class GerenciaPessoa {
 			novaPessoa.setNome(entrada.nextLine());
 			System.out.println("Insira o CPF");
 			novaPessoa.setCPF(entrada.nextLine());
-			if(!buscarPessoa(novaPessoa.getCPF())) {
+			if(!buscarPessoa(novaPessoa)) {
 				System.out.println("Insira o endereço");
 				novaPessoa.setEndereco(entrada.nextLine());
 				Principal.lstPessoas.add(novaPessoa);
@@ -26,9 +26,9 @@ public class GerenciaPessoa {
 		return -1;
 	}
 
-	public static boolean buscarPessoa(String CPF) {
+	public static boolean buscarPessoa(Pessoa pessoa) {
 		// Retorna true se encontra o elemento e false se não encontra
-				Pessoa pessoaAux = new Pessoa(CPF);
+				Pessoa pessoaAux = new Pessoa(pessoa.getCPF());
 
 				int posElem = Principal.lstPessoas.indexOf(pessoaAux);
 				if (posElem >= 0) {

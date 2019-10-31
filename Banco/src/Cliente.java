@@ -4,14 +4,8 @@ public class Cliente extends Pessoa{
 	private static int maxCodCliente = 1;
 	private int senha;
 	
-	public Cliente(int codCliente) {
-		this.codCliente = codCliente;
-	//	this.numeroAg = maxCodCliente++;
-		this.senha = 0;
-	}
-	
 	public Cliente() {
-	//	this.codCliente = maxCodCliente++;
+		this.codCliente = maxCodCliente++;
 		this.numeroAg = 0;
 		this.senha = 0;
 	}
@@ -28,7 +22,6 @@ public class Cliente extends Pessoa{
 		return numeroAg;
 	}
 
-
 	public int getSenha() {
 		return senha;
 	}
@@ -43,7 +36,7 @@ public class Cliente extends Pessoa{
 
 	@Override
 	public String toString() {
-		return "\n\nCliente: \ncodCliente = " + codCliente + "\ncodAgencia = " + numeroAg + "\n-------------------------------------";
+		return "\n\nCliente: " + this.getNome() + "\ncodCliente = " + codCliente + "\ncodAgencia = " + numeroAg + "\n-------------------------------------";
 	}
 
 }

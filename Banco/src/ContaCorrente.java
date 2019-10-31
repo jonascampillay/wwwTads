@@ -2,8 +2,8 @@
 public class ContaCorrente extends Conta {
 	private double limiteConta;
 
-	public ContaCorrente(int numeroAg, int codCliente) {
-		super(numeroAg, codCliente);
+	public ContaCorrente(int numeroAg, Cliente titular) {
+		super(numeroAg, titular);
 		this.limiteConta = 150.00;
 		this.tipo = "Corrente";
 	}
@@ -23,9 +23,9 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public String toString() {
-		return "Conta : " + this.numConta 
+		return  "Titular: " + this.getTitular().getNome() 
+				+ "\nConta : " + this.numConta 
 				+ "\nSaldo: " + this.saldo
-				+ "\nLimite da Conta: " 
-				+ this.limiteConta;
+				+ "\nLimite da Conta: " + this.limiteConta;
 	}
 }

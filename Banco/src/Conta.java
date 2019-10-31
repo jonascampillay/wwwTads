@@ -4,23 +4,22 @@ import java.util.Scanner;
 public abstract class Conta implements Serializable{
 	protected int numConta;
 	protected int numeroAg;
-	protected int codCliente;
-	protected double saldo;
+	protected Cliente titular;
 	protected String tipo;
+	protected double saldo;
 	private static int contador = 1000;
 
-	public Conta(int numeroAg, int codCliente, double saldo, double limite) {
+	public Conta(int numeroAg, double saldo, double limite) {
 		this.numConta = ++contador;
 		this.numeroAg = numeroAg;
 		this.saldo = saldo;
-		this.codCliente = codCliente;
 	}
 
-	protected Conta(int numeroAg, int codCliente) {
+	protected Conta(int numeroAg, Cliente titular) {
 		this.numConta = ++contador;
+		this.titular = titular;
 		this.numeroAg = numeroAg;
 		this.saldo = 0.0;
-		this.codCliente = codCliente;
 	}
 
 	@Override
@@ -53,7 +52,7 @@ public abstract class Conta implements Serializable{
 	public boolean transferir(Scanner entrada) {
 		Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
 		if (clientinho != null) {
-			Conta contaDestino = GerenciaConta.selecionarConta(clientinho.getCodCliente(), entrada);
+			Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
 			if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != this.getNumConta()) {
 				System.out.println("Insira o valor que deseja transferir");
 				double valor = Double.valueOf(entrada.nextLine());
@@ -124,12 +123,12 @@ public abstract class Conta implements Serializable{
 		this.numeroAg = numeroAg;
 	}
 
-	public int getCodCliente() {
-		return codCliente;
+	public Cliente getTitular() {
+		return titular;
 	}
 
-	public void setCodCliente(int codCliente) {
-		this.codCliente = codCliente;
+	public void setTitular(Cliente titular) {
+		this.titular = titular;
 	}
 
 	public String getTipo() {

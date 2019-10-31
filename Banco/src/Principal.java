@@ -15,12 +15,12 @@ public class Principal {
 		boolean sair = false;
 		int menu1 = 100;
 
-		lstAgencias = GerenciaArquivo.lerObj("Agencias");
-		lstContas = GerenciaArquivo.lerObj("Contas");
-		lstClientes = GerenciaArquivo.lerObj("Clientes");
-		lstGerentes = GerenciaArquivo.lerObj("Gerentes");
-		lstPessoas = GerenciaArquivo.lerObj("Pessoas");
-		
+//		lstAgencias = GerenciaArquivo.lerObj("Agencias");
+//		lstContas = GerenciaArquivo.lerObj("Contas");
+//		lstClientes = GerenciaArquivo.lerObj("Clientes");
+//		lstGerentes = GerenciaArquivo.lerObj("Gerentes");
+//		lstPessoas = GerenciaArquivo.lerObj("Pessoas");
+
 		do {
 			try {
 				System.out.println("Informe a opção desejada senhor(a)" + "\n1 - Cadastro" + "\n2 - Exclusão"
@@ -31,11 +31,9 @@ public class Principal {
 				switch (menu1) {
 				case 1:
 					menuCadastro(entrada);
-
 					break;
 				case 2:
 					menuExclusao(entrada);
-
 					break;
 				case 3:
 					menuRelatorio(entrada);
@@ -72,7 +70,7 @@ public class Principal {
 	private static void menuOperacoesBancarias(Scanner entrada) {
 		Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
 		if (clientinho.getCodCliente() != 0) {
-			Conta continha = GerenciaConta.selecionarConta(clientinho.getCodCliente(), entrada);
+			Conta continha = GerenciaConta.selecionarConta(clientinho, entrada);
 			if (continha.getNumConta() != 0) {
 				switch (continha.getTipo()) {
 				case "Poupança":
@@ -87,14 +85,14 @@ public class Principal {
 			}
 		}
 	}
-	
+
 	public static void menuCorrente(ContaCorrente continha, Scanner entrada) {
 		boolean sair = false;
-		System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
-				+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n0 - Voltar ao menu principal");
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
+		do {
+			System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
+					+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n0 - Voltar ao menu principal");
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
 				switch (menu2) {
 				case 1:
 					System.out.println("Saldo: R$" + continha.getSaldo());
@@ -121,21 +119,19 @@ public class Principal {
 					System.out.println("Opção inválida");
 					break;
 				}
-
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
-		}
+			} catch (Exception e) {
+				System.err.println("Deu ruim");
+			}
+		} while (sair);
 	}
-	
+
 	private static void menuPoupança(ContaPoupanca continha, Scanner entrada) {
 		boolean sair = false;
-		System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
-				+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n5 - Virar o mês" + "\n0 - Voltar ao menu principal");
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
+		do {
+			System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
+					+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n5 - Virar o mês" + "\n0 - Voltar ao menu principal");
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
 				switch (menu2) {
 				case 1:
 					System.out.println("Saldo: R$" + continha.getSaldo());
@@ -156,9 +152,9 @@ public class Principal {
 					}
 					break;
 				case 5:
-					if(continha.viraMes(continha)) {
+					if (continha.viraMes(continha)) {
 						System.out.println("Virado comm sucesso!");
-					}else {
+					} else {
 						System.out.println("Não virou");
 					}
 					break;
@@ -170,21 +166,20 @@ public class Principal {
 					break;
 				}
 
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
-		}
+			} catch (Exception e) {
+				System.err.println("Deu ruim");
+			}
+		} while (!sair);
 	}
 
 	private static void menuAlterarDados(Scanner entrada) {
 		boolean sair = false;
-		System.out.println("O que deseja cadastrar?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
-				+ "\n4 - Contas" + "\n0 - Sair da ramificação");
+		do {
+			System.out.println("O que deseja cadastrar?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
+					+ "\n4 - Contas" + "\n0 - Voltar ao menu anterior");
 
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
 				switch (menu2) {
 				case 1:
 					System.out.println("Em manutenção");
@@ -204,30 +199,27 @@ public class Principal {
 					break;
 				case 0:
 					sair = true;
-
 					break;
-
 				default:
 					System.out.println("Opção inválida");
 					break;
 				}
 
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
-		}
+			} catch (Exception e) {
+				System.err.println("Deu ruim");
+			}
+		} while (!sair);
 
 	}
 
 	private static void menuConsultaDados(Scanner entrada) {
 		boolean sair = false;
-		System.out.println("O que deseja consultar?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
-				+ "\n4 - Contas" + "\n0 - Sair da ramificação");
+		do {
+			System.out.println("O que deseja consultar?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
+					+ "\n4 - Contas" + "\n0 - Voltar ao menu anterior");
 
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
 				switch (menu2) {
 				case 1:
 					System.out.println(lstClientes.toString());
@@ -249,22 +241,20 @@ public class Principal {
 					break;
 				}
 
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
-		}
-
+			} catch (Exception e) {
+				System.err.println("Deu ruim");
+			}
+		} while (!sair);
 	}
 
 	private static void menuRelatorio(Scanner entrada) {
 		boolean sair = false;
-		System.out.println("O que deseja exibir relatório?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
-				+ "\n4 - Contas" + "\n0 - Sair da ramificação");
+		do {
+			System.out.println("O que deseja exibir relatório?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
+					+ "\n4 - Contas" + "\n0 - Voltar ao menu anterior");
 
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
 				switch (menu2) {
 				case 1:
 					System.out.println("Em manutenção");
@@ -286,22 +276,21 @@ public class Principal {
 					break;
 				}
 
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
-		}
+			} catch (Exception e) {
+				System.err.println("Deu ruim");
+			}
+		} while (!sair);
 
 	}
 
 	private static void menuExclusao(Scanner entrada) {
 		boolean sair = false;
-		System.out.println("O que deseja Excluir?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
-				+ "\n4 - Contas" + "\n0 - Sair da ramificação");
+		do {
+			System.out.println("O que deseja Excluir?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
+					+ "\n4 - Contas" + "\n0 - Voltar ao menu anterior");
 
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
 				switch (menu2) {
 				case 1:
 					GerenciaCliente.excluirCliente(entrada);
@@ -324,10 +313,10 @@ public class Principal {
 					break;
 				case 3:
 					if (lstGerentes.size() > 0) {
-						System.out.println("Informe o número do gerente");
-						GerenciaGerente.mostraGerentes();
-						if (GerenciaGerente.cancelarGerente(Integer.valueOf(entrada.nextLine()))) {
-							System.out.println("Gerente esxluido com sucesso");
+						Gerente excluido = GerenciaGerente.selecionarGerente(entrada);
+
+						if (GerenciaGerente.cancelarGerente(excluido.getCodGerente())) {
+							System.out.println("Gerente excluido com sucesso");
 						} else {
 							System.out.println("Falha ao excluir gerente");
 						}
@@ -343,48 +332,40 @@ public class Principal {
 					if (GerenciaConta.CancelarConta(numConta)) {
 						System.out.println("Conta excluida com sucesso");
 					} else {
-						System.out.println("Falha ao excluis conta");
+						System.out.println("Falha ao excluir conta");
 					}
 					break;
 				case 0:
 					sair = true;
-
 					break;
-
 				default:
 					System.out.println("Opção inválida");
 					break;
 				}
-
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
-		}
-
+			} catch (Exception e) {
+				System.err.println("Deu ruim");
+			}
+		} while (!sair);
 	}
 
 	private static void menuCadastro(Scanner entrada) {
 		boolean sair = false;
-		System.out.println("O que deseja cadastrar?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
-				+ "\n4 - Contas" + "\n0 - Sair da ramificação");
+		do {
+			System.out.println("O que deseja cadastrar?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
+					+ "\n4 - Contas" + "\n0 - Voltar ao menu anterior");
 
-		int menu2 = Integer.valueOf(entrada.nextLine());
-		try {
-			do {
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
 				switch (menu2) {
 				case 1:
-
 					if (GerenciaCliente.criarCliente(entrada)) {
 						System.out.println("Cliente cadastrado com sucesso");
 					}
-
 					break;
 				case 2:
 					if (GerenciaAgencia.criarAgencia(entrada)) {
 						System.out.println("Agência cadastrada com sucesso");
 					}
-
 					break;
 				case 3:
 					if (GerenciaGerente.cadastraGerente(entrada)) {
@@ -394,20 +375,7 @@ public class Principal {
 					}
 					break;
 				case 4:
-					System.out.println("Que tipo de conta?\n1- Corrente\n2- Poupança");
-					int tipoConta = Integer.valueOf(entrada.nextLine());
-
-					switch (tipoConta) {
-					case 1:
-						GerenciaConta.cadastraContaCorrente(entrada);
-						break;
-					case 2:
-						GerenciaConta.cadastraContaPoupanca(entrada);
-						break;
-					default:
-						System.out.println("Opção inválida!");
-						break;
-					}
+					GerenciaConta.cadastraConta(entrada);
 					break;
 				case 0:
 					sair = true;
@@ -416,30 +384,9 @@ public class Principal {
 					System.out.println("Opção inválida");
 					break;
 				}
-
-			} while (sair);
-
-		} catch (Exception e) {
-			System.err.println("Deu ruim");
-		}
-
+			} catch (Exception e) {
+				System.err.println("Deu ruim");
+			}
+		} while (!sair);
 	}
-
-	private static void cadastraConta(Scanner entrada) {
-		System.out.println("Que tipo de conta?\n1- Corrente\n2- Poupança");
-		int tipoConta = Integer.valueOf(entrada.nextLine());
-
-		switch (tipoConta) {
-		case 1:
-			GerenciaConta.cadastraContaCorrente(entrada);
-			break;
-		case 2:
-			GerenciaConta.cadastraContaPoupanca(entrada);
-			break;
-		default:
-			System.out.println("Opção inválida!");
-			break;
-		}
-	}
-
 }

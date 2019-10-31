@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class GerenciaAgencia {
 
 	public static boolean criarAgencia(Scanner entrada) {
-		Iterator<Agencia> iterAgencia = Principal.lstAgencias.iterator();
+		
 		try {
 			Agencia novaAgencia = new Agencia();
 			System.out.println("Insira o nome da nova agência");
