@@ -1,4 +1,4 @@
 
 public interface Operacao {
-	public boolean efetuar();
+	public abstract boolean efetuar();
 }
