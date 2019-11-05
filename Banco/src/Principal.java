@@ -99,7 +99,8 @@ public class Principal {
 					break;
 				case 2:
 					System.out.println("Digite o valor que deseja depositar");
-					continha.depositar(Double.valueOf(entrada.nextLine()));
+					//continha.depositar();
+					Operacao operacao = new Deposito(Double.valueOf(entrada.nextLine()));
 					break;
 				case 3:
 					System.out.println("Digite o valor que deseja sacar");
