@@ -153,8 +153,22 @@ public class Principal {
 					continha.depositar(Double.valueOf(entrada.nextLine()));
 					break;
 				case 3:
+
 					System.out.println("Digite o valor que deseja sacar");
-					continha.sacar(Double.valueOf(entrada.nextLine()));
+					double valor2 = Double.valueOf(entrada.nextLine());
+
+					Operacao operacao = new Saque(continha, valor2);
+
+					if (operacao.efetuar())
+
+						continha.lstOperacoes.add(operacao);
+
+					else {
+						System.err.println("Não foi possivel realizar");
+					}
+
+					System.out.println("Saldo atual: " + continha.getSaldo());
+
 					break;
 				case 4:
 					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
