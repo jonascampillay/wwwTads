@@ -115,6 +115,15 @@ public class Principal {
 						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
 							System.out.println("Insira o valor que deseja transferir");
 							double valor = Double.valueOf(entrada.nextLine());
+							Operacao operacaoTransfer = new Transferencia(valor, continha, contaDestino);
+							if (operacaoTransfer.efetuar())
+
+								continha.lstOperacoes.add(operacaoTransfer);
+
+							else {
+								System.err.println("Não foi possivel realizar");
+							}
+
 							if (continha.transferir(valor, contaDestino)) {
 								System.out.println("Transferência realizada com sucesso");
 							} else {
@@ -177,6 +186,15 @@ public class Principal {
 						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
 							System.out.println("Insira o valor que deseja transferir");
 							double valor = Double.valueOf(entrada.nextLine());
+							Operacao operacaoTransfer = new Transferencia(valor, continha, contaDestino);
+							if (operacaoTransfer.efetuar())
+
+								continha.lstOperacoes.add(operacaoTransfer);
+
+							else {
+								System.err.println("Não foi possivel realizar");
+							}
+
 							if (continha.transferir(valor, contaDestino)) {
 								System.out.println("Transferência realizada com sucesso");
 							} else {
