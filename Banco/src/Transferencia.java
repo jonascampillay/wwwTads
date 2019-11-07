@@ -17,11 +17,10 @@ public class Transferencia implements Operacao{
 	public boolean efetuar() {
 
 		if (this.contaOrigem.transferir(valor, destino)) {
-
+			this.data = new Date(System.currentTimeMillis());
 			this.contaOrigem.addOperacao(this);
 			return true;
 		} else
 			return false;
-
 	}
 }

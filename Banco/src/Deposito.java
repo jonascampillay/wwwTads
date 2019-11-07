@@ -14,6 +14,7 @@ public class Deposito implements Operacao{
 	@Override
 	public boolean efetuar() {
 		if (this.contaOrigem.depositar(valor)) {
+			this.data = new Date(System.currentTimeMillis());
 			this.contaOrigem.addOperacao(this);
 			return true;
 		} else

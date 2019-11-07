@@ -3,7 +3,7 @@ import java.util.Date;
 public class Saque implements Operacao{
 	private Conta contaOrigem;
 	private double valor;
-	private Date data = new Date();
+	private Date data;
 
 	public Saque(Conta objConta, double valor) {
 		this.contaOrigem = objConta;
@@ -14,10 +14,10 @@ public class Saque implements Operacao{
 	public boolean efetuar() {
 
 		if (this.contaOrigem.sacar(valor)) {
+			this.data = new Date(System.currentTimeMillis());
 			this.contaOrigem.addOperacao(this);
 			return true;
 		} else
 			return false;
-
 	}
 }

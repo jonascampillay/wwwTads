@@ -159,7 +159,15 @@ public class Principal {
 					break;
 				case 2:
 					System.out.println("Digite o valor que deseja depositar");
-					continha.depositar(Double.valueOf(entrada.nextLine()));
+					double valorDeposito = Double.valueOf(entrada.nextLine());
+					
+					Operacao operacaoD = new Deposito(continha, valorDeposito);
+
+					if (operacaoD.efetuar())
+						continha.lstOperacoes.add(operacaoD);
+					else {
+						System.err.println("Não foi possivel realizar");
+					}
 					break;
 				case 3:
 
@@ -169,15 +177,10 @@ public class Principal {
 					Operacao operacao = new Saque(continha, valor2);
 
 					if (operacao.efetuar())
-
 						continha.lstOperacoes.add(operacao);
-
 					else {
 						System.err.println("Não foi possivel realizar");
 					}
-
-					System.out.println("Saldo atual: " + continha.getSaldo());
-
 					break;
 				case 4:
 					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
@@ -200,7 +203,6 @@ public class Principal {
 							} else {
 								System.out.println("Falha na transferência");
 							}
-
 						}
 					}
 					break;
@@ -269,7 +271,7 @@ public class Principal {
 		boolean sair = false;
 		do {
 			System.out.println("O que deseja consultar?" + "\n1- Clientes" + "\n2- Agências" + "\n3- Gerentes"
-					+ "\n4- Contas" + "\n5- Pessoas" + "\n0 - Voltar ao menu anterior");
+					+ "\n4- Contas" + "\n5- Pessoas" + "\n6- Histórico de operações" + "\n0 - Voltar ao menu anterior");
 
 			int menu2 = Integer.valueOf(entrada.nextLine());
 			try {
@@ -289,6 +291,14 @@ public class Principal {
 				case 5:
 					System.out.println(lstPessoas.toString());
 					break;
+				case 6:
+					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+					if (clientinho.getCodCliente() != 0) {
+						Conta continha = GerenciaConta.selecionarConta(clientinho, entrada);
+						if (continha.getNumConta() != 0) {
+							continha.lstOperacoes.toString();
+						}
+					}
 				case 0:
 					sair = true;
 					break;
