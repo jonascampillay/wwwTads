@@ -2,8 +2,8 @@ import java.io.Serializable;
 
 public class Pessoa implements Serializable{
 	protected String nome;
-	private String CPF;
-	private String endereco;
+	protected String CPF;
+	protected String endereco;
 	private int codPessoa;
 	private static int contador = 1;
 
@@ -51,5 +51,10 @@ public class Pessoa implements Serializable{
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	@Override
+	public String toString() {
+		return "Nome=" + nome + "\nCPF=" + CPF + "\nEndereco=" + endereco + "\n---------------------------------------------";
 	}
 }

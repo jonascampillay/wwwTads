@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Conta implements Serializable{
@@ -8,6 +9,8 @@ public abstract class Conta implements Serializable{
 	protected String tipo;
 	protected double saldo;
 	private static int contador = 1000;
+	protected ArrayList<Operacao> lstOperacoes = new ArrayList();
+	
 
 	public Conta(int numeroAg, double saldo, double limite) {
 		this.numConta = ++contador;

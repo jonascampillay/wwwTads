@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class GerenciaPessoa {
-	public static int cadastraPessoa(Scanner entrada) {
+	public static Pessoa cadastraPessoa(Scanner entrada) {
 		Pessoa novaPessoa = new Pessoa();
 		
 		try {
@@ -14,8 +14,9 @@ public class GerenciaPessoa {
 			if(!buscarPessoa(novaPessoa)) {
 				System.out.println("Insira o endereço");
 				novaPessoa.setEndereco(entrada.nextLine());
-				Principal.lstPessoas.add(novaPessoa);
-				return novaPessoa.getCodPessoa();
+				if(Principal.lstPessoas.add(novaPessoa)) {
+					return novaPessoa;
+				}
 			}else{
 				System.out.println("CPF já cadastrado");
 			}
@@ -23,7 +24,7 @@ public class GerenciaPessoa {
 		} catch (Exception e) {
 			System.err.println("Entrada inválida");
 		}
-		return -1;
+		return null;
 	}
 
 	public static boolean buscarPessoa(Pessoa pessoa) {

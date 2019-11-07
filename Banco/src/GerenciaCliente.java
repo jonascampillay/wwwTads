@@ -51,16 +51,12 @@ public class GerenciaCliente {
 
 	public static boolean criarCliente(Scanner entrada) {
 		try {
-			Cliente novoCliente = new Cliente();
+			Pessoa novaPessoa = GerenciaPessoa.cadastraPessoa(entrada);
 			
-			System.out.println("Insira o nome da nova pessoa");
-			novoCliente.setNome(entrada.nextLine());
-			System.out.println("Insira o CPF");
-			novoCliente.setCPF(entrada.nextLine());
-			if(!GerenciaPessoa.buscarPessoa(novoCliente)) {
-				System.out.println("Insira o endereço");
-				novoCliente.setEndereco(entrada.nextLine());
-				novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui meu parceiro 
+			if(novaPessoa != null) {
+				Cliente novoCliente = new Cliente(novaPessoa);
+				
+				novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui meu parceiro
 				System.out.println("Insira a senha do novo cliente");
 				novoCliente.setSenha(Integer.valueOf(entrada.nextLine()));
 				return Principal.lstClientes.add(novoCliente);

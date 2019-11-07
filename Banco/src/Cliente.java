@@ -9,7 +9,15 @@ public class Cliente extends Pessoa{
 		this.numeroAg = 0;
 		this.senha = 0;
 	}
-
+	public Cliente(Pessoa pessoa) {
+		this.nome = pessoa.getNome();
+		this.CPF = pessoa.getCPF();
+		this.endereco = pessoa.getEndereco();
+		this.codCliente = pessoa.getCodPessoa();
+		this.numeroAg = 0;
+		this.senha = 0;
+	}
+	
 	public int getCodCliente() {
 		return codCliente;
 	}

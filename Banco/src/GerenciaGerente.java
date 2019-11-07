@@ -1,6 +1,6 @@
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Objects;
 
 public class GerenciaGerente {
 	public static Gerente selecionarGerente(Scanner entrada) {
@@ -34,21 +34,14 @@ public class GerenciaGerente {
 
 	public static boolean cadastraGerente(Scanner entrada) {
 		try {
-			Gerente novoGerente = new Gerente();
+			Pessoa novaPessoa = GerenciaPessoa.cadastraPessoa(entrada);
 
-			System.out.println("Insira o nome da nova pessoa");
-			novoGerente.setNome(entrada.nextLine());
-			System.out.println("Insira o CPF");
-			novoGerente.setCPF(entrada.nextLine());
-
-			if (!GerenciaPessoa.buscarPessoa(novoGerente)) {
-
-				System.out.println("Insira o endereço");
-				novoGerente.setEndereco(entrada.nextLine());
-				Principal.lstPessoas.add(novoGerente);
+			if (novaPessoa != null) {
+				
+				Gerente novoGerente = new Gerente(novaPessoa);
 				Agencia agGerente = GerenciaAgencia.selecionarAgencia(entrada);
-
-				if (Objects.nonNull(agGerente)) {
+				
+				if (agGerente != null) {
 
 					novoGerente.setNumeroAg(agGerente.getNumeroAg());
 					System.out.println("Insira a matricula do gerente");
@@ -56,8 +49,9 @@ public class GerenciaGerente {
 					System.out.println("Insira o salário do gerente");
 					novoGerente.setSalario(entrada.nextDouble());
 
-					if (Objects.isNull(agGerente.getGerente())) {
+					if (agGerente.getGerente() != null) {
 						agGerente.setGerente(novoGerente);
+					//	Principal.lstPessoas.add((Pessoa)novoGerente);
 						return Principal.lstGerentes.add(novoGerente);
 					} else {
 						System.out.println("Agencia já possui gerente cadastrado!!\nOperação cancelada");
@@ -80,7 +74,7 @@ public class GerenciaGerente {
 		int indice = -1;
 		boolean continuar = true;
 		Gerente gerenteAux = new Gerente();
-		
+
 		for (int i = 0; i < Principal.lstGerentes.size() && continuar; i++) {
 			gerenteAux = Principal.lstGerentes.get(i);
 			if (gerenteAux.getCodGerente() == codGerente) {
@@ -88,7 +82,7 @@ public class GerenciaGerente {
 				continuar = false;
 			}
 		}
-		
+
 		if (indice != -1) {
 			Principal.lstGerentes.remove(indice);
 			return cancelarGerenteAgencia(gerenteAux);

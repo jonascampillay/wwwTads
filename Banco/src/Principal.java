@@ -103,11 +103,13 @@ public class Principal {
 					break;
 				case 3:
 					System.out.println("Digite o valor que deseja sacar");
+					//sacar saque
+					//operacao
 					continha.sacar(Double.valueOf(entrada.nextLine()));
 					break;
 				case 4:
 					if (continha.transferir(entrada)) {
-						System.out.println("Trasferência realizada com sucesso");
+						System.out.println("Transferência realizada com sucesso");
 					} else {
 						System.out.println("Falha na transferência");
 					}
@@ -215,8 +217,8 @@ public class Principal {
 	private static void menuConsultaDados(Scanner entrada) {
 		boolean sair = false;
 		do {
-			System.out.println("O que deseja consultar?" + "\n1- Clientes" + "\n2 - Agências" + "\n3 - Gerentes"
-					+ "\n4 - Contas" + "\n0 - Voltar ao menu anterior");
+			System.out.println("O que deseja consultar?" + "\n1- Clientes" + "\n2- Agências" + "\n3- Gerentes"
+					+ "\n4- Contas" + "\n5- Pessoas" + "\n0 - Voltar ao menu anterior");
 
 			int menu2 = Integer.valueOf(entrada.nextLine());
 			try {
@@ -232,6 +234,9 @@ public class Principal {
 					break;
 				case 4:
 					System.out.println(lstContas.toString());
+					break;
+				case 5:
+					System.out.println(lstPessoas.toString());
 					break;
 				case 0:
 					sair = true;

@@ -22,11 +22,14 @@ public class Gerente extends Pessoa implements Serializable{
 		this.salario = 0.0;
 	}
 	
-	public Gerente(int codGerente) {
-		this.codGerente = codGerente;
+	public Gerente(Pessoa pessoa) {
+		this.nome = pessoa.getNome();
+		this.CPF = pessoa.getCPF();
+		this.endereco = pessoa.getEndereco();
+		this.codGerente = pessoa.getCodPessoa();
+		this.numeroAg = 0;
 		this.matricula = 0;
 		this.salario = 0.0;
-		this.numeroAg = 0;
 	}
 	
 	public int getMatricula() {
