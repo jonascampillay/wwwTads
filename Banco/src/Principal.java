@@ -61,7 +61,7 @@ public class Principal {
 				}
 
 			} catch (Exception e) {
-				System.err.println("Error");
+				System.err.println("Erro!");
 			}
 		} while (!sair);
 
@@ -141,7 +141,7 @@ public class Principal {
 					break;
 				}
 			} catch (Exception e) {
-				System.err.println("error");
+				System.err.println("Erro!");
 			}
 		} while (sair);
 	}
@@ -220,7 +220,7 @@ public class Principal {
 				}
 
 			} catch (Exception e) {
-				System.err.println("error");
+				System.err.println("Erro!");
 			}
 		} while (!sair);
 	}
@@ -259,7 +259,7 @@ public class Principal {
 				}
 
 			} catch (Exception e) {
-				System.err.println("error");
+				System.err.println("Erro!");
 			}
 		} while (!sair);
 
@@ -298,7 +298,7 @@ public class Principal {
 				}
 
 			} catch (Exception e) {
-				System.err.println("error");
+				System.err.println("Erro!");
 			}
 		} while (!sair);
 	}
@@ -333,7 +333,7 @@ public class Principal {
 				}
 
 			} catch (Exception e) {
-				System.err.println("error");
+				System.err.println("Erro!");
 			}
 		} while (!sair);
 
@@ -399,7 +399,7 @@ public class Principal {
 					break;
 				}
 			} catch (Exception e) {
-				System.err.println("Error");
+				System.err.println("Erro!");
 			}
 		} while (!sair);
 	}
@@ -441,7 +441,7 @@ public class Principal {
 					break;
 				}
 			} catch (Exception e) {
-				System.err.println("Error");
+				System.err.println("Erro!");
 			}
 		} while (!sair);
 	}
