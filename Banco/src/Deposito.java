@@ -13,7 +13,7 @@ public class Deposito implements Operacao{
 
 	@Override
 	public boolean efetuar() {
-		if (this.contaOrigem.sacar(valor)) {
+		if (this.contaOrigem.depositar(valor)) {
 			this.contaOrigem.addOperacao(this);
 			return true;
 		} else
