@@ -124,12 +124,6 @@ public class Principal {
 								System.err.println("Não foi possivel realizar");
 							}
 
-							if (continha.transferir(valor, contaDestino)) {
-								System.out.println("Transferência realizada com sucesso");
-							} else {
-								System.out.println("Falha na transferência");
-							}
-
 						}
 					}
 					break;
@@ -198,11 +192,6 @@ public class Principal {
 								System.err.println("Não foi possivel realizar");
 							}
 
-							if (continha.transferir(valor, contaDestino)) {
-								System.out.println("Transferência realizada com sucesso");
-							} else {
-								System.out.println("Falha na transferência");
-							}
 						}
 					}
 					break;
