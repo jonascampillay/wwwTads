@@ -99,20 +99,29 @@ public class Principal {
 					break;
 				case 2:
 					System.out.println("Digite o valor que deseja depositar");
-					//continha.depositar();
-					Operacao operacao = new Deposito(Double.valueOf(entrada.nextLine()));
+					continha.depositar(Double.valueOf(entrada.nextLine()));
+					// Operacao operacao = new Deposito();
 					break;
 				case 3:
 					System.out.println("Digite o valor que deseja sacar");
-					//sacar saque
-					//operacao
+					// sacar saque
+					// operacao
 					continha.sacar(Double.valueOf(entrada.nextLine()));
 					break;
 				case 4:
-					if (continha.transferir(entrada)) {
-						System.out.println("Transferência realizada com sucesso");
-					} else {
-						System.out.println("Falha na transferência");
+					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+					if (clientinho != null) {
+						Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
+						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
+							System.out.println("Insira o valor que deseja transferir");
+							double valor = Double.valueOf(entrada.nextLine());
+							if (continha.transferir(valor, contaDestino)) {
+								System.out.println("Transferência realizada com sucesso");
+							} else {
+								System.out.println("Falha na transferência");
+							}
+
+						}
 					}
 					break;
 				case 0:
@@ -148,10 +157,19 @@ public class Principal {
 					continha.sacar(Double.valueOf(entrada.nextLine()));
 					break;
 				case 4:
-					if (continha.transferir(entrada)) {
-						System.out.println("Transferência realizada com sucesso");
-					} else {
-						System.out.println("Falha na transferência");
+					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+					if (clientinho != null) {
+						Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
+						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
+							System.out.println("Insira o valor que deseja transferir");
+							double valor = Double.valueOf(entrada.nextLine());
+							if (continha.transferir(valor, contaDestino)) {
+								System.out.println("Transferência realizada com sucesso");
+							} else {
+								System.out.println("Falha na transferência");
+							}
+
+						}
 					}
 					break;
 				case 5:

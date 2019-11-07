@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public abstract class Conta implements Serializable{
+public abstract class Conta implements Serializable {
 	protected int numConta;
 	protected int numeroAg;
 	protected Cliente titular;
@@ -10,7 +10,6 @@ public abstract class Conta implements Serializable{
 	protected double saldo;
 	private static int contador = 1000;
 	protected ArrayList<Operacao> lstOperacoes = new ArrayList();
-	
 
 	public Conta(int numeroAg, double saldo, double limite) {
 		this.numConta = ++contador;
@@ -29,6 +28,12 @@ public abstract class Conta implements Serializable{
 	public boolean equals(Object obj) {
 		Conta conta = (Conta) obj;
 		return this.numConta == conta.numConta;
+	}
+
+	public void addOperacao(Operacao operacao) {
+
+		this.lstOperacoes.add(operacao);
+
 	}
 
 	public boolean sacar(double valor) {
@@ -52,20 +57,13 @@ public abstract class Conta implements Serializable{
 
 	}
 
-	public boolean transferir(Scanner entrada) {
-		Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
-		if (clientinho != null) {
-			Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
-			if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != this.getNumConta()) {
-				System.out.println("Insira o valor que deseja transferir");
-				double valor = Double.valueOf(entrada.nextLine());
-				if (this.sacar(valor)) {
-					contaDestino.depositar(valor);
-					return true;
-				}
-			} else {
-				System.out.println("Operação não permitida");
-			}
+	public boolean transferir(Double valor, Conta conta) {
+		if (this.sacar(valor)) {
+			conta.depositar(valor);
+			return true;
+
+		} else {
+			System.out.println("Operação não permitida");
 		}
 		return false;
 	}
@@ -137,12 +135,14 @@ public abstract class Conta implements Serializable{
 	public String getTipo() {
 		return tipo;
 	}
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
 	@Override
 	public String toString() {
-		return "/n Conta: \nnumConta = " + numConta + "\\nnumeroAg = " + numeroAg + "\nsaldo = " + saldo + "\n-------------------------------------------";
+		return "/n Conta: \nnumConta = " + numConta + "\\nnumeroAg = " + numeroAg + "\nsaldo = " + saldo
+				+ "\n-------------------------------------------";
 	}
 }

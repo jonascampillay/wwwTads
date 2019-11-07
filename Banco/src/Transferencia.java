@@ -3,18 +3,25 @@ import java.util.Date;
 public class Transferencia implements Operacao{
 	private double valor;
 	private Date data;
-	private Conta origem;
-	private Conta destino;
+	private Conta destino, contaOrigem;
 
-	public Transferencia(Double valor, Conta origem, Conta destino) {
+	public Transferencia(double valor, Conta contaOrigem, Conta destino) {
+		super();
 		this.valor = valor;
-		this.origem = origem;
 		this.destino = destino;
+		this.contaOrigem = contaOrigem;
+		this.data = new Date();
 	}
-	
+
+	@Override
 	public boolean efetuar() {
-		boolean irineu = false;
-		
-		return true;
+
+		if (this.contaOrigem.transferir(valor, destino)) {
+
+			this.contaOrigem.addOperacao(this);
+			return true;
+		} else
+			return false;
+
 	}
 }
