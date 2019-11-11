@@ -9,12 +9,10 @@ public class ContaPoupanca extends Conta {
 		this.tipo = "Poupança";
 	}
 
-	public boolean viraMes(Conta conta) {
+	public void viraMes() {
 		if (this.saldo > 0) {
 			this.saldo += this.saldo * this.rendimento;
-			return true;
 		}
-		return false;
 	}
 
 	@Override

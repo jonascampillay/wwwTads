@@ -67,7 +67,7 @@ public abstract class Conta implements Serializable {
 		return false;
 	}
 	
-	public abstract boolean viraMes(Conta conta);
+	public abstract void viraMes();
 
 	public static String registrarHistorico(String[] historico, int cont, double valor) {
 		String saidaHistorico = "";
@@ -147,6 +147,12 @@ public abstract class Conta implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String extrato() {
+		
+		String saida = lstOperacoes.toString();
+		return saida;
 	}
 
 	@Override

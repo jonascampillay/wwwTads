@@ -1,6 +1,8 @@
 
 public class ContaCorrente extends Conta {
 	private double limiteConta;
+	private double tarifa = 20;
+	private double juros = 0.03;
 
 	public ContaCorrente(int numeroAg, Cliente titular) {
 		super(numeroAg, titular);
@@ -8,6 +10,22 @@ public class ContaCorrente extends Conta {
 		this.tipo = "Corrente";
 	}
 	
+	public double getLimiteConta() {
+		return limiteConta;
+	}
+
+	public void setLimiteConta(double limiteConta) {
+		this.limiteConta = limiteConta;
+	}
+
+	public double getTarifa() {
+		return tarifa;
+	}
+
+	public void setTarifa(double tarifa) {
+		this.tarifa = tarifa;
+	}
+
 	@Override
 	public boolean sacar(double valor) {
 		double limiteSaque = this.saldo + this.limiteConta;
@@ -21,11 +39,11 @@ public class ContaCorrente extends Conta {
 		return false;
 	}
 
-	@Override
-	public boolean viraMes(Conta conta) {
-		
-		return false;
+	public void viraMes() {
+		this.saldo -= this.saldo * juros;
+		this.saldo -= tarifa;
 	}
+
 	
 	@Override
 	public String toString() {
