@@ -8,6 +8,7 @@ public abstract class Conta implements Serializable {
 	protected Cliente titular;
 	protected String tipo;
 	protected double saldo;
+	protected String senha;
 	private static int contador = 1000;
 	protected ArrayList<Operacao> lstOperacoes = new ArrayList();
 
@@ -31,9 +32,7 @@ public abstract class Conta implements Serializable {
 	}
 
 	public void addOperacao(Operacao operacao) {
-
 		this.lstOperacoes.add(operacao);
-
 	}
 
 	public boolean sacar(double valor) {
@@ -67,6 +66,8 @@ public abstract class Conta implements Serializable {
 		}
 		return false;
 	}
+	
+	public abstract boolean viraMes(Conta conta);
 
 	public static String registrarHistorico(String[] historico, int cont, double valor) {
 		String saidaHistorico = "";
@@ -138,6 +139,14 @@ public abstract class Conta implements Serializable {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override

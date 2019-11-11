@@ -22,6 +22,12 @@ public class ContaCorrente extends Conta {
 	}
 
 	@Override
+	public boolean viraMes(Conta conta) {
+		
+		return false;
+	}
+	
+	@Override
 	public String toString() {
 		return  "Titular: " + this.getTitular().getNome() 
 				+ "\nConta : " + this.numConta 

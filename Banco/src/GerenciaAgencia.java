@@ -61,6 +61,9 @@ public class GerenciaAgencia {
 					} else if (index == -1) {
 						continuar = false;
 					}
+				} else if(Principal.lstAgencias.isEmpty()) {
+					System.out.println("Nenhuma Agência cadastrada!");
+					return null;
 				}
 			}
 		} catch (Exception e) {

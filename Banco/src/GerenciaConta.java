@@ -34,6 +34,9 @@ public class GerenciaConta {
 					} else if (index == -1) {
 						continuar = false;
 					}
+				} else if(Principal.lstContas.isEmpty()) {
+					System.out.println("Nenhuma conta cadastrada!");
+					return null;
 				}
 			}
 		} catch (Exception e) {
@@ -51,12 +54,12 @@ public class GerenciaConta {
 
 				switch (tipoConta) {
 				case 1:
-					if(GerenciaConta.cadastraContaCorrente(entrada)) {
+					if (GerenciaConta.cadastraContaCorrente(entrada)) {
 						sair = true;
 					}
 					break;
 				case 2:
-					if(GerenciaConta.cadastraContaPoupanca(entrada)) {
+					if (GerenciaConta.cadastraContaPoupanca(entrada)) {
 						sair = true;
 					}
 					break;
@@ -78,6 +81,9 @@ public class GerenciaConta {
 		int agencia = clientezinho.getNumeroAg();
 		Conta novaConta = new ContaCorrente(agencia, clientezinho);
 		try {
+			System.out.println("Insira a senha da nova conta");
+			novaConta.setSenha(entrada.nextLine());
+
 			if (Principal.lstContas.add(novaConta)) {
 				System.out.println("Conta cadastrada com sucesso");
 				return true;
@@ -97,6 +103,9 @@ public class GerenciaConta {
 		int agencia = clientezinho.getNumeroAg();
 		Conta novaConta = new ContaPoupanca(agencia, clientezinho);
 		try {
+			System.out.println("Insira a senha da nova conta");
+			novaConta.setSenha(entrada.nextLine());
+
 			if (Principal.lstContas.add(novaConta)) {
 				System.out.println("Conta cadastrada com sucesso");
 				return true;
@@ -133,6 +142,27 @@ public class GerenciaConta {
 		return -1;
 	}
 
+	public static Conta entrar(Scanner entrada) {
+		try {
+			Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+			if (clientinho.getCodCliente() != 0) {
+				Conta continha = GerenciaConta.selecionarConta(clientinho, entrada);
+				if (continha.getNumConta() != 0) {
+					System.out.println("Insira a senha da conta");
+					String senha = entrada.nextLine();
+					if(continha.getSenha().equals(senha)) {
+						return continha;
+					} else {
+						System.out.println("Senha incorreta!");
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Erro ao logar na conta!");
+		}
+		return null;
+	}
+
 	// método para mostrar todas as contas que estão cadastradas no sistema
 	public static void mostraContas() {
 		Iterator<Conta> iterConta = Principal.lstContas.iterator();
@@ -143,6 +173,5 @@ public class GerenciaConta {
 		}
 		System.out.println(contas);
 	}
-
 
 }

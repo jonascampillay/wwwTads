@@ -26,7 +26,7 @@ public class Principal {
 			try {
 				System.out.println("Informe a opção desejada senhor(a)" + "\n1 - Cadastro" + "\n2 - Exclusão"
 						+ "\n3 - Exibir relatório" + "\n4 - Consultar dados" + "\n5 - Alterar dados"
-						+ "\n6 - Operações bancárias" + "\n0 - Sair do sistema");
+						+ "\n6 - Logar em conta" + "\n0 - Sair do sistema");
 				menu1 = Integer.valueOf(entrada.nextLine());
 
 				switch (menu1) {
@@ -46,7 +46,10 @@ public class Principal {
 					menuAlterarDados(entrada);
 					break;
 				case 6:
-					menuOperacoesBancarias(entrada);
+					Conta continha = GerenciaConta.entrar(entrada);
+					if(continha != null) {
+						menuOperacoesBancarias(continha, entrada);						
+					}
 					break;
 				case 0:
 					GerenciaArquivo.gravaObj(lstAgencias, "Agencias");
@@ -68,84 +71,11 @@ public class Principal {
 
 	}
 
-	private static void menuOperacoesBancarias(Scanner entrada) {
-		Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
-		if (clientinho.getCodCliente() != 0) {
-			Conta continha = GerenciaConta.selecionarConta(clientinho, entrada);
-			if (continha.getNumConta() != 0) {
-				switch (continha.getTipo()) {
-				case "Poupança":
-					ContaPoupanca poupinha = (ContaPoupanca) continha;
-					menuPoupança(poupinha, entrada);
-					break;
-				case "Corrente":
-					ContaCorrente correntinha = (ContaCorrente) continha;
-					menuCorrente(correntinha, entrada);
-					break;
-				}
-			}
-		}
-	}
-
-	public static void menuCorrente(ContaCorrente continha, Scanner entrada) {
+	private static void menuOperacoesBancarias(Conta continha, Scanner entrada) {
 		boolean sair = false;
 		do {
-			System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
-					+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n0 - Voltar ao menu principal");
-			int menu2 = Integer.valueOf(entrada.nextLine());
-			try {
-				switch (menu2) {
-				case 1:
-					System.out.println("Saldo: R$" + continha.getSaldo());
-					break;
-				case 2:
-					System.out.println("Digite o valor que deseja depositar");
-					continha.depositar(Double.valueOf(entrada.nextLine()));
-					// Operacao operacao = new Deposito();
-					break;
-				case 3:
-					System.out.println("Digite o valor que deseja sacar");
-					// sacar saque
-					// operacao
-					continha.sacar(Double.valueOf(entrada.nextLine()));
-					break;
-				case 4:
-					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
-					if (clientinho != null) {
-						Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
-						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
-							System.out.println("Insira o valor que deseja transferir");
-							double valor = Double.valueOf(entrada.nextLine());
-							Operacao operacaoTransfer = new Transferencia(valor, continha, contaDestino);
-							if (operacaoTransfer.efetuar())
-
-								continha.lstOperacoes.add(operacaoTransfer);
-
-							else {
-								System.err.println("Não foi possivel realizar");
-							}
-
-						}
-					}
-					break;
-				case 0:
-					sair = true;
-					break;
-				default:
-					System.out.println("Opção inválida");
-					break;
-				}
-			} catch (Exception e) {
-				System.err.println("Erro!");
-			}
-		} while (sair);
-	}
-
-	private static void menuPoupança(ContaPoupanca continha, Scanner entrada) {
-		boolean sair = false;
-		do {
-			System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
-					+ "\n3 - Sacar" + "\n4 - Trasferir" + "\n5 - Virar o mês" + "\n0 - Voltar ao menu principal");
+			System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2- Depositar "
+					+ "\n3- Sacar" + "\n4- Transferir" + "\n5- Virar o mês" + "\n6- Ver extrato"+ "\n0 - Voltar ao menu principal");
 			int menu2 = Integer.valueOf(entrada.nextLine());
 			try {
 				switch (menu2) {
@@ -186,13 +116,149 @@ public class Principal {
 							double valor = Double.valueOf(entrada.nextLine());
 							Operacao operacaoTransfer = new Transferencia(valor, continha, contaDestino);
 							if (operacaoTransfer.efetuar())
-
 								continha.lstOperacoes.add(operacaoTransfer);
-
 							else {
 								System.err.println("Não foi possivel realizar");
 							}
+						}
+					}
+					break;
+				case 5:
+					if (continha.viraMes(continha)) {
+						System.out.println("Virado comm sucesso!");
+					} else {
+						System.out.println("Não virou");
+					}
+					break;
+				case 6:
+					continha.lstOperacoes.toString();
+					break;
+				case 0:
+					sair = true;
+					break;
+				default:
+					System.out.println("Opção inválida");
+					break;
+				}
+			} catch (Exception e) {
+				System.err.println("Erro!");
+			}
+		} while (!sair);
+	}
 
+	public static void menuCorrente(ContaCorrente continha, Scanner entrada) {
+		boolean sair = false;
+		do {
+			System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
+					+ "\n3 - Sacar" + "\n4 - Transferir" + "\n0 - Voltar ao menu principal");
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
+				switch (menu2) {
+				case 1:
+					System.out.println("Saldo: R$" + continha.getSaldo());
+					break;
+				case 2:
+					System.out.println("Digite o valor que deseja depositar");
+					double valorDeposito = Double.valueOf(entrada.nextLine());
+					
+					Operacao operacaoD = new Deposito(continha, valorDeposito);
+
+					if (operacaoD.efetuar())
+						continha.lstOperacoes.add(operacaoD);
+					else {
+						System.err.println("Não foi possivel realizar");
+					}
+					break;
+				case 3:
+					System.out.println("Digite o valor que deseja sacar");
+					double valor2 = Double.valueOf(entrada.nextLine());
+
+					Operacao operacao = new Saque(continha, valor2);
+
+					if (operacao.efetuar())
+						continha.lstOperacoes.add(operacao);
+					else {
+						System.err.println("Não foi possivel realizar");
+					}
+					break;
+				case 4:
+					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+					if (clientinho != null) {
+						Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
+						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
+							System.out.println("Insira o valor que deseja transferir");
+							double valor = Double.valueOf(entrada.nextLine());
+							Operacao operacaoTransfer = new Transferencia(valor, continha, contaDestino);
+							if (operacaoTransfer.efetuar())
+								continha.lstOperacoes.add(operacaoTransfer);
+							else {
+								System.err.println("Não foi possivel realizar");
+							}
+						}
+					}
+					break;
+				case 0:
+					sair = true;
+					break;
+				default:
+					System.out.println("Opção inválida");
+					break;
+				}
+			} catch (Exception e) {
+				System.err.println("Erro!");
+			}
+		} while (sair);
+	}
+
+	private static void menuPoupança(ContaPoupanca continha, Scanner entrada) {
+		boolean sair = false;
+		do {
+			System.out.println("Qual operação bancária deseja realizar?" + "\n1- Ver saldo" + "\n2 - Depositar "
+					+ "\n3 - Sacar" + "\n4 - Transferir" + "\n5 - Virar o mês" + "\n0 - Voltar ao menu principal");
+			int menu2 = Integer.valueOf(entrada.nextLine());
+			try {
+				switch (menu2) {
+				case 1:
+					System.out.println("Saldo: R$" + continha.getSaldo());
+					break;
+				case 2:
+					System.out.println("Digite o valor que deseja depositar");
+					double valorDeposito = Double.valueOf(entrada.nextLine());
+					
+					Operacao operacaoD = new Deposito(continha, valorDeposito);
+
+					if (operacaoD.efetuar())
+						continha.lstOperacoes.add(operacaoD);
+					else {
+						System.err.println("Não foi possivel realizar");
+					}
+					break;
+				case 3:
+
+					System.out.println("Digite o valor que deseja sacar");
+					double valor2 = Double.valueOf(entrada.nextLine());
+
+					Operacao operacao = new Saque(continha, valor2);
+
+					if (operacao.efetuar())
+						continha.lstOperacoes.add(operacao);
+					else {
+						System.err.println("Não foi possivel realizar");
+					}
+					break;
+				case 4:
+					Cliente clientinho = GerenciaCliente.selecionarCliente(entrada);
+					if (clientinho != null) {
+						Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
+						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
+							System.out.println("Insira o valor que deseja transferir");
+							double valor = Double.valueOf(entrada.nextLine());
+							Operacao operacaoTransfer = new Transferencia(valor, continha, contaDestino);
+							if (operacaoTransfer.efetuar())
+								continha.lstOperacoes.add(operacaoTransfer);
+							else {
+								System.err.println("Não foi possivel realizar");
+							}
 						}
 					}
 					break;

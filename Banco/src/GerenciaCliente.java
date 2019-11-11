@@ -34,6 +34,9 @@ public class GerenciaCliente {
 					} else if (index == -1) {
 						continuar = false;
 					}
+				} else if(Principal.lstClientes.isEmpty()) {
+					System.out.println("Nenhum cliente cadastrado!");
+					return null;
 				}
 			}
 		} catch (Exception e) {
@@ -68,7 +71,7 @@ public class GerenciaCliente {
 				novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui
 																									/// meu parceiro
 				System.out.println("Insira a senha do novo cliente");
-				novoCliente.setSenha(Integer.valueOf(entrada.nextLine()));
+				novoCliente.setSenha(entrada.nextLine());
 				return Principal.lstClientes.add(novoCliente);
 
 			} else {
