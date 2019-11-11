@@ -5,20 +5,29 @@ import java.util.Scanner;
 public class GerenciaGerente {
 	public static Gerente selecionarGerente(Scanner entrada) {
 		Iterator<Gerente> iterGerente = Principal.lstGerentes.iterator();
-		String gerentes = "Insira o código do Gerente desejado\n";
+		String gerentes = "Insira a matricula do Gerente desejado\n";
 		boolean continuar = true;
 		Gerente gerenteAux;
+		int index = 0;
 
 		try {
 			while (continuar) {
 				if (iterGerente.hasNext()) {
 					for (int i = 0; i < Principal.lstGerentes.size(); i++) {
 						gerenteAux = Principal.lstGerentes.get(i);
-						gerentes += i + "- " + gerenteAux.toString() + "\n";
+						gerentes += i + 1 + "- " + gerenteAux.toString() + "\n";
 					}
 					System.out.println(gerentes + "ou digite -1 para cancelar");
 
-					int index = Integer.valueOf(entrada.nextLine());
+					int numMatricula = Integer.valueOf(entrada.nextLine());
+
+					for (int i = 0; i < Principal.lstGerentes.size(); i++) {
+						gerenteAux = Principal.lstGerentes.get(i);
+						if (numMatricula == gerenteAux.getMatricula()) {
+							index = i;
+						}
+					}
+
 					if (index >= 0 && index <= (Principal.lstGerentes.size() - 1)) {
 						return Principal.lstGerentes.get(index);
 					} else if (index == -1) {
@@ -37,10 +46,10 @@ public class GerenciaGerente {
 			Pessoa novaPessoa = GerenciaPessoa.cadastraPessoa(entrada);
 
 			if (novaPessoa != null) {
-				
+
 				Gerente novoGerente = new Gerente(novaPessoa);
 				Agencia agGerente = GerenciaAgencia.selecionarAgencia(entrada);
-				
+
 				if (agGerente != null) {
 
 					novoGerente.setNumeroAg(agGerente.getNumeroAg());
@@ -51,7 +60,7 @@ public class GerenciaGerente {
 
 					if (agGerente.getGerente() != null) {
 						agGerente.setGerente(novoGerente);
-					//	Principal.lstPessoas.add((Pessoa)novoGerente);
+						// Principal.lstPessoas.add((Pessoa)novoGerente);
 						return Principal.lstGerentes.add(novoGerente);
 					} else {
 						System.out.println("Agencia já possui gerente cadastrado!!\nOperação cancelada");

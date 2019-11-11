@@ -10,6 +10,7 @@ public class Principal {
 	protected static ArrayList<Gerente> lstGerentes = new ArrayList();
 	protected static ArrayList<Pessoa> lstPessoas = new ArrayList();
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
 		boolean sair = false;

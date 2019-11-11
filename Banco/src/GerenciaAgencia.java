@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class GerenciaAgencia {
 
 	public static boolean criarAgencia(Scanner entrada) {
-		
+
 		try {
 			Agencia novaAgencia = new Agencia();
 			System.out.println("Insira o nome da nova agência");
@@ -12,7 +12,7 @@ public class GerenciaAgencia {
 			System.out.println("Insira o endereço da nova agência");
 			novaAgencia.setEndereco(entrada.nextLine());
 			return Principal.lstAgencias.add(novaAgencia);
-				
+
 		} catch (Exception e) {
 			System.err.println("Quebrou");
 		}
@@ -33,9 +33,11 @@ public class GerenciaAgencia {
 
 	public static Agencia selecionarAgencia(Scanner entrada) {
 		Iterator<Agencia> iterAgencia = Principal.lstAgencias.iterator();
-		String agencias = "Insira o código da agência desejada\n";
+		String agencias = "Insira o número da agência desejada\n";
 		boolean continuar = true;
+		boolean encontrado = false;
 		Agencia agenciaAux;
+		int index = 0;
 
 		try {
 			while (continuar) {
@@ -46,7 +48,14 @@ public class GerenciaAgencia {
 					}
 					System.out.println(agencias + "ou digite -1 para cancelar");
 
-					int index = Integer.valueOf(entrada.nextLine());
+					int numAg = Integer.valueOf(entrada.nextLine());
+
+					for (int i = 0; i < Principal.lstAgencias.size(); i++) {
+						agenciaAux = Principal.lstAgencias.get(i);
+						if (numAg == agenciaAux.getNumeroAg()) {
+							index = i;
+						}
+					}
 					if (index >= 0 && index <= (Principal.lstAgencias.size() - 1)) {
 						return Principal.lstAgencias.get(index);
 					} else if (index == -1) {
@@ -90,5 +99,5 @@ public class GerenciaAgencia {
 		}
 		System.out.println(agencias);
 	}
-	
+
 }

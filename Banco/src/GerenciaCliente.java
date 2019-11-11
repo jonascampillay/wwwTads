@@ -1,14 +1,14 @@
 import java.util.Iterator;
 import java.util.Scanner;
 
-
 public class GerenciaCliente {
-	
+
 	public static Cliente selecionarCliente(Scanner entrada) {
 		Iterator<Cliente> iterCliente = Principal.lstClientes.iterator();
 		String clientes = "Insira o código do cliente desejado\n";
 		Cliente clienteAux;
 		boolean continuar = true;
+		int index = 0;
 		try {
 			while (continuar) {
 				if (iterCliente.hasNext()) {
@@ -19,7 +19,16 @@ public class GerenciaCliente {
 					}
 					clientes += "ou digite -1 para cancelar";
 					System.out.println(clientes);
-					int index = Integer.valueOf(entrada.nextLine());
+
+					int codCliente = Integer.valueOf(entrada.nextLine());
+
+					for (int i = 0; i < Principal.lstClientes.size(); i++) {
+						clienteAux = Principal.lstClientes.get(i);
+						if (codCliente == clienteAux.getCodCliente()) {
+							index = i;
+						}
+					}
+
 					if (index >= 0 && index <= (Principal.lstClientes.size() - 1)) {
 						return Principal.lstClientes.get(index);
 					} else if (index == -1) {
@@ -52,19 +61,20 @@ public class GerenciaCliente {
 	public static boolean criarCliente(Scanner entrada) {
 		try {
 			Pessoa novaPessoa = GerenciaPessoa.cadastraPessoa(entrada);
-			
-			if(novaPessoa != null) {
+
+			if (novaPessoa != null) {
 				Cliente novoCliente = new Cliente(novaPessoa);
-				
-				novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui meu parceiro
+
+				novoCliente.setNumeroAg(GerenciaAgencia.selecionarAgencia(entrada).getNumeroAg()); /// quebrando aqui
+																									/// meu parceiro
 				System.out.println("Insira a senha do novo cliente");
 				novoCliente.setSenha(Integer.valueOf(entrada.nextLine()));
 				return Principal.lstClientes.add(novoCliente);
-				
-			}else{
+
+			} else {
 				System.out.println("CPF já cadastrado");
 			}
-			
+
 		} catch (Exception e) {
 			System.err.println("Algo de errado não está certo");
 		}
@@ -82,5 +92,5 @@ public class GerenciaCliente {
 
 		return false;
 	}
-	
+
 }

@@ -4,9 +4,10 @@ import java.util.Scanner;
 public class GerenciaConta {
 	public static Conta selecionarConta(Cliente clientx, Scanner entrada) {
 		Iterator<Conta> iterConta = Principal.lstContas.iterator();
-		String contas = "Insira o código da conta desejada\n";
+		String contas = "Insira o número da conta desejada\n";
 		Conta contaAux;
 		boolean continuar = true;
+		int index = 0;
 		try {
 			while (continuar) {
 				if (iterConta.hasNext()) {
@@ -19,7 +20,15 @@ public class GerenciaConta {
 					}
 					contas += "ou digite -1 para cancelar";
 					System.out.println(contas);
-					int index = Integer.valueOf(entrada.nextLine());
+					
+					int numConta = Integer.valueOf(entrada.nextLine());
+
+					for (int i = 0; i < Principal.lstContas.size(); i++) {
+						contaAux = Principal.lstContas.get(i);
+						if (numConta == contaAux.getNumConta()) {
+							index = i;
+						}
+					}
 					if (index >= 0 && index <= (Principal.lstContas.size() - 1)) {
 						return Principal.lstContas.get(index);
 					} else if (index == -1) {
