@@ -150,7 +150,6 @@ public abstract class Conta implements Serializable {
 	}
 	
 	public String extrato() {
-		
 		String saida = lstOperacoes.toString();
 		return saida;
 	}

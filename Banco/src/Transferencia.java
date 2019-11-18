@@ -19,6 +19,8 @@ public class Transferencia implements Operacao{
 		if (this.contaOrigem.transferir(valor, destino)) {
 			this.data = new Date(System.currentTimeMillis());
 			this.contaOrigem.addOperacao(this);
+			this.destino.addOperacao(this);
+
 			return true;
 		} else
 			return false;

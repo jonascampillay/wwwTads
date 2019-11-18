@@ -25,16 +25,12 @@ public class GerenciaCliente {
 					for (int i = 0; i < Principal.lstClientes.size(); i++) {
 						clienteAux = Principal.lstClientes.get(i);
 						if (codCliente == clienteAux.getCodCliente()) {
-							index = i;
+							return Principal.lstClientes.get(i);
+						}else if(codCliente == -1) {
+							continuar = false;
 						}
 					}
-
-					if (index >= 0 && index <= (Principal.lstClientes.size() - 1)) {
-						return Principal.lstClientes.get(index);
-					} else if (index == -1) {
-						continuar = false;
-					}
-				} else if(Principal.lstClientes.isEmpty()) {
+				} else if (Principal.lstClientes.isEmpty()) {
 					System.out.println("Nenhum cliente cadastrado!");
 					return null;
 				}

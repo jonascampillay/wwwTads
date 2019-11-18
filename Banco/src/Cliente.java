@@ -1,4 +1,6 @@
-public class Cliente extends Pessoa{
+import java.io.Serializable;
+
+public class Cliente extends Pessoa implements Serializable{
 	private int codCliente;
 	private int numeroAg;
 	private static int maxCodCliente = 1;
@@ -42,7 +44,7 @@ public class Cliente extends Pessoa{
 	}
 	@Override
 	public String toString() {
-		return "\n\nCliente: " + this.getNome() + "\ncodCliente = " + codCliente + "\ncodAgencia = " + numeroAg + "\n-------------------------------------";
+		return "\n\nCliente: " + this.getNome() + "\ncodCliente = " + this.codCliente + "\ncodAgencia = " + this.numeroAg + "\n-------------------------------------";
 	}
 
 }

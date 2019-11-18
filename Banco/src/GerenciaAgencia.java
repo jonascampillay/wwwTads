@@ -53,14 +53,11 @@ public class GerenciaAgencia {
 					for (int i = 0; i < Principal.lstAgencias.size(); i++) {
 						agenciaAux = Principal.lstAgencias.get(i);
 						if (numAg == agenciaAux.getNumeroAg()) {
-							index = i;
+							return Principal.lstAgencias.get(i);
 						}
-					}
-					if (index >= 0 && index <= (Principal.lstAgencias.size() - 1)) {
-						return Principal.lstAgencias.get(index);
-					} else if (index == -1) {
 						continuar = false;
 					}
+					
 				} else if(Principal.lstAgencias.isEmpty()) {
 					System.out.println("Nenhuma Agência cadastrada!");
 					return null;

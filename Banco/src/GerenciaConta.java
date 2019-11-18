@@ -20,23 +20,26 @@ public class GerenciaConta {
 					}
 					contas += "ou digite -1 para cancelar";
 					System.out.println(contas);
-					
+
 					int numConta = Integer.valueOf(entrada.nextLine());
 
-					for (int i = 0; i < Principal.lstContas.size(); i++) {
-						contaAux = Principal.lstContas.get(i);
-						if (numConta == contaAux.getNumConta()) {
-							index = i;
-						}
-					}
-					if (index >= 0 && index <= (Principal.lstContas.size() - 1)) {
-						return Principal.lstContas.get(index);
-					} else if (index == -1) {
+					if (numConta == -1) {
 						continuar = false;
+					} else {
+						for (int i = 0; i < Principal.lstContas.size(); i++) {
+							contaAux = Principal.lstContas.get(i);
+							if (numConta == contaAux.getNumConta()) {
+								return Principal.lstContas.get(i);
+							}
+						}
+
+						System.err.println("Agência inválida");
+						return null;
 					}
-				} else if(Principal.lstContas.isEmpty()) {
+
+				} else if (Principal.lstContas.isEmpty()) {
 					System.out.println("Nenhuma conta cadastrada!");
-					return null;
+					continuar = false;
 				}
 			}
 		} catch (Exception e) {
@@ -150,7 +153,7 @@ public class GerenciaConta {
 				if (continha.getNumConta() != 0) {
 					System.out.println("Insira a senha da conta");
 					String senha = entrada.nextLine();
-					if(continha.getSenha().equals(senha)) {
+					if (continha.getSenha().equals(senha)) {
 						return continha;
 					} else {
 						System.out.println("Senha incorreta!");

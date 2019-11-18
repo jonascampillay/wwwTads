@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Principal {
 
+	//Autores: Guilherme e Hiago.
+	
 	protected static ArrayList<Agencia> lstAgencias = new ArrayList();
 	protected static ArrayList<Conta> lstContas = new ArrayList();
 	protected static ArrayList<Cliente> lstClientes = new ArrayList();
@@ -105,6 +107,7 @@ public class Principal {
 					if (clientinho != null) {
 						Conta contaDestino = GerenciaConta.selecionarConta(clientinho, entrada);
 						if (contaDestino.getNumConta() > 0 && contaDestino.getNumConta() != continha.getNumConta()) {
+							
 							System.out.println("Insira o valor que deseja transferir");
 							double valor = Double.valueOf(entrada.nextLine());
 							Operacao operacaoTransfer = new Transferencia(valor, continha, contaDestino);
@@ -117,10 +120,19 @@ public class Principal {
 					}
 					break;
 				case 5:
+					if (continha instanceof ContaCorrente) {
+						Operacao operacaoT = new Tarifacao(continha);  
+						if (operacaoT.efetuar()) {
+							
+						}
+					} else {
+						Operacao operacaoT = new Rendimento(continha);
+					}
 					continha.viraMes();
 					System.out.println("Mês virado");
 					break;
 				case 6:
+					
 					System.out.println(continha.extrato());
 					break;
 				case 0:
