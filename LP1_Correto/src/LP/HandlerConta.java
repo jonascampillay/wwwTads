@@ -12,7 +12,7 @@ public class HandlerConta {
 
 		if (agencia != null) {
 			try {
-
+				///// guilherme é doente
 				boolean saida = false;
 				do {
 					System.out.println("Consultar Conta:" + "\n1 - Poupança" + "\n2 - Corrente" + "\n0 - sair");
