@@ -10,7 +10,7 @@ public class Gerente extends Pessoa implements Serializable { // especialização 
 	public Gerente() {
 		super();
 	}
-
+//gdgddg
 	public Gerente(int matricula) {
 		this.matricula = matricula;
 
@@ -19,7 +19,7 @@ public class Gerente extends Pessoa implements Serializable { // especialização 
 	public Gerente(String cpf) {
 		super(cpf);
 	}
-
+//hhh
 	public Gerente(String nome, String cpf, String endereco) {
 		super(nome, cpf, endereco);
 	}
