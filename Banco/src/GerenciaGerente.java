@@ -18,9 +18,11 @@ public class GerenciaGerente {
 						gerentes += i + 1 + "- " + gerenteAux.toString() + "\n";
 					}
 					System.out.println(gerentes + "ou digite -1 para cancelar");
-
+					if (continuar) {
+						
+					}
 					int numMatricula = Integer.valueOf(entrada.nextLine());
-
+					
 					for (int i = 0; i < Principal.lstGerentes.size(); i++) {
 						gerenteAux = Principal.lstGerentes.get(i);
 						if (numMatricula == gerenteAux.getMatricula()) {
@@ -74,7 +76,7 @@ public class GerenciaGerente {
 			}
 
 		} catch (Exception e) {
-			System.err.println("Algo de errado não está certo");
+			System.err.println("Erro!");
 		}
 		return false;
 	}
