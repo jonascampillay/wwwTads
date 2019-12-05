@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -66,6 +68,40 @@ public class TelaCliente {
 		JButton btnNewButton_1 = new JButton("Transferencia");
 		btnNewButton_1.setBounds(252, 97, 107, 23);
 		frmTelaCliente.getContentPane().add(btnNewButton_1);
+		btnNewButton_1.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaTransferencia telaT = new TelaTransferencia();
+				telaT.transferencia();
+				
+				
+			}
+		});
 		
 		JButton btnNewButton_2 = new JButton("Dsposito");
 		btnNewButton_2.setBounds(252, 131, 107, 23);
@@ -76,11 +112,11 @@ public class TelaCliente {
 		frmTelaCliente.getContentPane().add(btnNewButton_3);
 		
 		JLabel lblNomeCliente = new JLabel("Nome Cliente");
-		lblNomeCliente.setBounds(53, 169, 89, 14);
+		lblNomeCliente.setBounds(86, 67, 89, 14);
 		frmTelaCliente.getContentPane().add(lblNomeCliente);
 		
 		JLabel lblSaldo = new JLabel("Saldo");
-		lblSaldo.setBounds(53, 194, 96, 14);
+		lblSaldo.setBounds(85, 169, 96, 14);
 		frmTelaCliente.getContentPane().add(lblSaldo);
 	}
 
