@@ -1,4 +1,4 @@
-package imagens;
+package Imagens;
 
 public class nula {
 

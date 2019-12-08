@@ -10,10 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class TelaDeposito {
 
-	private JFrame frame;
+	private JFrame frmDeposito;
 	private JTextField textField;
 
 	/**
@@ -24,7 +27,7 @@ public class TelaDeposito {
 			public void run() {
 				try {
 					TelaDeposito window = new TelaDeposito();
-					window.frame.setVisible(true);
+					window.frmDeposito.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,42 +46,41 @@ public class TelaDeposito {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmDeposito = new JFrame();
+		frmDeposito.setForeground(Color.WHITE);
+		frmDeposito.setTitle("Deposito");
+		frmDeposito.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\20181tadst0330\\Desktop\\iconBank.png"));
+		frmDeposito.setBackground(new Color(255, 102, 0));
+		frmDeposito.getContentPane().setBackground(Color.WHITE);
+		frmDeposito.setBounds(100, 100, 325, 313);
+		frmDeposito.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		textField = new JTextField();
+		textField.setBounds(63, 175, 175, 20);
 		textField.setColumns(10);
 		
 		JLabel lblR = new JLabel("R$");
+		lblR.setBounds(25, 175, 16, 18);
 		lblR.setFont(new Font("Tw Cen MT", Font.PLAIN, 13));
 		
-		JLabel lblQualOValor = new JLabel("Qual o valor que deseja depositar");
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(97, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblQualOValor)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblR)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(131))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(154, Short.MAX_VALUE)
-					.addComponent(lblQualOValor)
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblR))
-					.addGap(55))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		JLabel lblQualOValor = new JLabel("Valor a Depositar");
+		lblQualOValor.setBounds(25, 128, 99, 14);
+		frmDeposito.getContentPane().setLayout(null);
+		
+		JLabel lblSaldo = new JLabel("Saldo Atual");
+		lblSaldo.setBounds(25, 42, 120, 33);
+		frmDeposito.getContentPane().add(lblSaldo);
+		frmDeposito.getContentPane().add(lblQualOValor);
+		frmDeposito.getContentPane().add(lblR);
+		frmDeposito.getContentPane().add(textField);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\Hiago Brazzali\\Documents\\wwwTads\\ProjetoLp1\\src\\Imagens\\images.png"));
+		label.setBounds(180, 37, 75, 75);
+		frmDeposito.getContentPane().add(label);
+		
+		JButton btnOk = new JButton("ok");
+		btnOk.setBounds(102, 227, 89, 23);
+		frmDeposito.getContentPane().add(btnOk);
 	}
 }

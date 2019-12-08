@@ -53,13 +53,15 @@ public class TelaCliente {
 		frmTelaCliente.getContentPane().setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\20181tadst0330\\Desktop\\iconCliente.png"));
-		label.setBounds(53, 26, 128, 128);
+		label.setIcon(new ImageIcon("C:\\Users\\20181tadst0330\\Documents\\wwwTads-dev\\wwwTads-dev\\ProjetoLp1\\src\\imagens\\login.png"));
+		label.setBounds(52, 39, 100, 100);
 		frmTelaCliente.getContentPane().add(label);
 		
 		JButton btnNewButton = new JButton("Saque");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaSaque saque = new TelaSaque();
+				saque.saque();
 			}
 		});
 		btnNewButton.setBounds(252, 63, 107, 23);
@@ -112,11 +114,11 @@ public class TelaCliente {
 		frmTelaCliente.getContentPane().add(btnNewButton_3);
 		
 		JLabel lblNomeCliente = new JLabel("Nome Cliente");
-		lblNomeCliente.setBounds(86, 67, 89, 14);
+		lblNomeCliente.setBounds(26, 150, 89, 14);
 		frmTelaCliente.getContentPane().add(lblNomeCliente);
 		
 		JLabel lblSaldo = new JLabel("Saldo");
-		lblSaldo.setBounds(85, 169, 96, 14);
+		lblSaldo.setBounds(26, 169, 96, 14);
 		frmTelaCliente.getContentPane().add(lblSaldo);
 	}
 

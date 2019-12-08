@@ -22,7 +22,7 @@ public class Login {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void Login() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -47,6 +47,7 @@ public class Login {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		frame.setForeground(new Color(255, 153, 0));
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\20181tadst0330\\Desktop\\sacodinheiro.png"));
@@ -54,7 +55,7 @@ public class Login {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton entrar = new JButton("entrar");
-		entrar.setBounds(113, 256, 89, 23);
+		entrar.setBounds(113, 273, 89, 23);
 		entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -86,20 +87,8 @@ public class Login {
 		frame.getContentPane().add(esqueceu_senha);
 		
 		JLabel label = new JLabel("");
-		label.setBounds(137, 137, 96, -75);
+		label.setIcon(new ImageIcon("C:\\Users\\20181tadst0330\\Documents\\wwwTads-dev\\wwwTads-dev\\ProjetoLp1\\src\\imagens\\iconPerson.png"));
+		label.setBounds(124, 29, 125, 124);
 		frame.getContentPane().add(label);
-		
-		JLabel label_2 = new JLabel("");
-		label_2.setBounds(163, 78, 46, 14);
-		frame.getContentPane().add(label_2);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(58, 42, 104, 93);
-		frame.getContentPane().add(label_1);
-		
-		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(Login.class.getResource("/imagens/login.png")));
-		label_3.setBounds(133, 48, 100, 100);
-		frame.getContentPane().add(label_3);
 	}
 }
