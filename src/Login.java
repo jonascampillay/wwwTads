@@ -57,8 +57,10 @@ public class Login {
 		entrar.setBounds(113, 273, 89, 23);
 		entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaCliente telaCliente = new TelaCliente();
-				telaCliente.iniciar();
+				
+				
+				
+				TelaCliente.iniciar();
 				frame.setVisible(false);
 			}	
 		});
@@ -77,6 +79,7 @@ public class Login {
 		num_conta = new JTextField();
 		num_conta.setBounds(113, 184, 195, 20);
 		num_conta.setColumns(10);
+		
 		
 		num_senha = new JTextField();
 		num_senha.setBounds(114, 225, 194, 20);

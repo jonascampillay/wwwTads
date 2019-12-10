@@ -9,9 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+
+import LP.Agencia;
+
 import java.awt.Toolkit;
 
 public class TelaInicial {
+	public static Agencia agencia = new Agencia("Santa Teresa");
 
 	public static JFrame frame;
 
@@ -85,8 +89,8 @@ public class TelaInicial {
 
 		JTextPane txtpnRuaTal = new JTextPane();
 		txtpnRuaTal
-				.setText("Rua Tal numero tal    CEp Tal                 Tel:(00) 9000-000  Email: banquinho@bmail.com");
-		txtpnRuaTal.setBounds(26, 197, 122, 89);
+				.setText("Rua Tal numero tal\r\nCEp Tal\r\n Tel:(00) 9000-00\r\nEmail: banquinho@bmail.com \nAgencia - SantaTeresa");
+		txtpnRuaTal.setBounds(26, 197, 122, 131);
 		frame.getContentPane().add(txtpnRuaTal);
 
 		JButton btnCliente = new JButton("Cliente");
@@ -99,10 +103,6 @@ public class TelaInicial {
 		});
 		btnCliente.setBounds(310, 305, 89, 23);
 		frame.getContentPane().add(btnCliente);
-
-		JLabel label = new JLabel();
-		label.setBounds(20, 290, 122, 38);
-		frame.getContentPane().add(label);
 		frame.setBounds(100, 100, 469, 387);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

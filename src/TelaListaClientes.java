@@ -4,9 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
+
+import LP.Principal;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.AbstractListModel;
+import java.awt.Color;
 
 public class TelaListaClientes {
 
@@ -40,9 +45,9 @@ public class TelaListaClientes {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\20181tadst0330\\Documents\\wwwTads-dev\\wwwTads-dev\\ProjetoLp1\\src\\imagens\\iconBank.png"));
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 896, 513);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -58,9 +63,20 @@ public class TelaListaClientes {
 		frame.getContentPane().add(btnNewButton);
 		
 		JList list = new JList();
-		list.setBounds(70, 73, 277, 178);
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {Principal.listaCliente.toString()};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setToolTipText("");
+		list.setBounds(10, 56, 860, 169);
 		frame.getContentPane().add(list);
 	
+		
 		//lISTAR OS CLIENTES DA AGENCIA
 	
 	

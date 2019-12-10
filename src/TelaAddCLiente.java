@@ -1,28 +1,34 @@
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import LP.Cliente;
+import LP.HandlerCliente;
+import LP.Principal;
+import LP.Util;
+import LP.UtilBanco;
 
 public class TelaAddCLiente {
 
 	public static JFrame frmNewClient;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField txtnome;
+	private JTextField txtCPF;
+	private JTextField txtendereco;
+	private JTextField txtlogin;
+	private JTextField txtsenha;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void adicionar() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -54,25 +60,25 @@ public class TelaAddCLiente {
 		frmNewClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNewClient.getContentPane().setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(90, 162, 160, 20);
-		frmNewClient.getContentPane().add(textField);
-		textField.setColumns(10);
+		txtnome = new JTextField();
+		txtnome.setBounds(90, 162, 160, 20);
+		frmNewClient.getContentPane().add(txtnome);
+		txtnome.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(90, 193, 160, 20);
-		frmNewClient.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		txtCPF = new JTextField();
+		txtCPF.setBounds(90, 193, 160, 20);
+		frmNewClient.getContentPane().add(txtCPF);
+		txtCPF.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(90, 224, 160, 20);
-		frmNewClient.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		txtendereco = new JTextField();
+		txtendereco.setBounds(90, 224, 160, 20);
+		frmNewClient.getContentPane().add(txtendereco);
+		txtendereco.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(90, 313, 136, 20);
-		frmNewClient.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		txtlogin = new JTextField();
+		txtlogin.setBounds(90, 313, 136, 20);
+		frmNewClient.getContentPane().add(txtlogin);
+		txtlogin.setColumns(10);
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -89,6 +95,11 @@ public class TelaAddCLiente {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Confirmar e Salvar o Novo Cliente
+				
+				if (!UtilBanco.pesquisaCliente(txtCPF.getText())) {
+					HandlerCliente.cadastrarCliente(txtnome.getText(), txtCPF.getText(), txtendereco.getText());
+				}
+				
 				
 				frmNewClient.setVisible(false);
 				TelaGerente.frmTelaGerente.setVisible(true);
@@ -118,10 +129,10 @@ public class TelaAddCLiente {
 		lblNewLabel_4.setBounds(23, 347, 46, 14);
 		frmNewClient.getContentPane().add(lblNewLabel_4);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(90, 344, 136, 20);
-		frmNewClient.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+		txtsenha = new JTextField();
+		txtsenha.setBounds(90, 344, 136, 20);
+		frmNewClient.getContentPane().add(txtsenha);
+		txtsenha.setColumns(10);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("C:\\Users\\20181tadst0330\\Desktop\\iconAddPerson.png"));

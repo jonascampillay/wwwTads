@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import LP.HandlerCliente;
+import LP.HandlerGerente;
+
 public class TelaGerente {
 
 	public static JFrame frmTelaGerente;
@@ -53,9 +56,9 @@ public class TelaGerente {
 		
 		JButton btnAddClient = new JButton("add Cliente");
 		btnAddClient.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaAddCLiente tela = new TelaAddCLiente();
-				tela.main(null);
+			public void actionPerformed(ActionEvent arg0) {				
+				
+				TelaAddCLiente.adicionar();
 				frmTelaGerente.setVisible(false);
 				
 			}
