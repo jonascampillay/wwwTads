@@ -20,7 +20,7 @@ public class TelaCliente {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void cliente() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -64,11 +64,11 @@ public class TelaCliente {
 				saque.saque();
 			}
 		});
-		btnNewButton.setBounds(252, 63, 107, 23);
+		btnNewButton.setBounds(298, 63, 107, 23);
 		frmTelaCliente.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Transferencia");
-		btnNewButton_1.setBounds(252, 97, 107, 23);
+		btnNewButton_1.setBounds(298, 97, 107, 23);
 		frmTelaCliente.getContentPane().add(btnNewButton_1);
 		btnNewButton_1.addMouseListener(new MouseListener() {
 			
@@ -105,22 +105,22 @@ public class TelaCliente {
 			}
 		});
 		
-		JButton btnNewButton_2 = new JButton("Dsposito");
-		btnNewButton_2.setBounds(252, 131, 107, 23);
-		frmTelaCliente.getContentPane().add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Extrato");
-		btnNewButton_3.setBounds(252, 165, 107, 23);
-		frmTelaCliente.getContentPane().add(btnNewButton_3);
 		
-		JLabel lblNomeCliente = new JLabel("Nome Cliente");
-		lblNomeCliente.setBounds(26, 150, 89, 14);
-		frmTelaCliente.getContentPane().add(lblNomeCliente);
+		JButton btnCadastrarCliente = new JButton("Cadastrar Cliente");
+		btnCadastrarCliente.setBounds(141, 63, 126, 23);
+		frmTelaCliente.getContentPane().add(btnCadastrarCliente);
 		
-		JLabel lblSaldo = new JLabel("Saldo");
-		lblSaldo.setBounds(26, 169, 96, 14);
-		frmTelaCliente.getContentPane().add(lblSaldo);
+		JButton btnConsultarCliente = new JButton("Consultar CLiente");
+		btnConsultarCliente.setBounds(141, 109, 126, 23);
+		frmTelaCliente.getContentPane().add(btnConsultarCliente);
+		
+		JButton btnAlterarCliente = new JButton("Alterar cliente");
+		btnAlterarCliente.setBounds(141, 165, 126, 23);
+		frmTelaCliente.getContentPane().add(btnAlterarCliente);
+		
+		JButton btnNewButton_4 = new JButton("Transa\u00E7\u00F5es");
+		btnNewButton_4.setBounds(141, 224, 126, 23);
+		frmTelaCliente.getContentPane().add(btnNewButton_4);
 	}
-
-
 }

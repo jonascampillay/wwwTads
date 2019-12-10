@@ -57,7 +57,10 @@ public class Login {
 		JButton entrar = new JButton("entrar");
 		entrar.setBounds(113, 273, 89, 23);
 		entrar.addActionListener(new ActionListener() {
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent arg0) {
+				TelaCliente cliente = new TelaCliente();
+				cliente.cliente();
 			}
 		});
 		
@@ -75,20 +78,24 @@ public class Login {
 		num_senha.setBounds(114, 225, 194, 20);
 		num_senha.setColumns(10);
 		
-		JButton esqueceu_senha = new JButton("esqueceu a senha");
-		esqueceu_senha.setFont(new Font("Trebuchet MS", Font.PLAIN, 9));
-		esqueceu_senha.setBounds(113, 318, 136, 23);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(entrar);
 		frame.getContentPane().add(lblConta);
 		frame.getContentPane().add(lblSenha);
 		frame.getContentPane().add(num_conta);
 		frame.getContentPane().add(num_senha);
-		frame.getContentPane().add(esqueceu_senha);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("C:\\Users\\20181tadst0330\\Documents\\wwwTads-dev\\wwwTads-dev\\ProjetoLp1\\src\\imagens\\iconPerson.png"));
 		label.setBounds(124, 29, 125, 124);
 		frame.getContentPane().add(label);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(10, 24, 46, 14);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(10, 11, 0, 0);
+		frame.getContentPane().add(label_1);
 	}
 }
